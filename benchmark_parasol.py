@@ -51,7 +51,7 @@ PROBLEMS = [
 ]
 
 
-SOLVERS = ["fzn-cp-sat", "fzn-gecode", "fzn-chuffed", "fzn-huub", "cplex", "choco", "fzn-choco.sh", "picat", "fzn-picat", "java", "minizinc", "parasol"]
+SOLVERS = ["fzn-cp-sat", "fzn-gecode", "fzn-chuffed", "fzn-huub", "cplex", "choco", "fzn-choco.sh", "picat", "fzn-picat", "java", "minizinc", "parasol", "fzn-dexter", "fzn-izplus", "pumpkin-solver", "yuck"]
 
 
 def kill_solvers():
@@ -103,9 +103,7 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
     elapsed_ms = (time.perf_counter() - start) * 1000
 
     stdout = result.stdout.decode("utf-8", errors="replace")
-    stderr = result.stderr.decode("utf-8", errors="replace")
-    if stderr:
-        print(f"\n    STDERR: {stderr.strip()}", file=sys.stderr)
+
 
     objectives = re.findall(r'_objective\s*=\s*(-?\d+);', stdout)
     objective = objectives[-1] if objectives else None
