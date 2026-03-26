@@ -98,6 +98,7 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
     cmd.extend(parasol_args)
 
+    print(f"    cmd: {' '.join(cmd)}", flush=True)
     start = time.perf_counter()
     result = subprocess.run(cmd, capture_output=True)
     elapsed_ms = (time.perf_counter() - start) * 1000
