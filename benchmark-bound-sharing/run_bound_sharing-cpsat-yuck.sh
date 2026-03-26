@@ -13,7 +13,8 @@ for interval in "${INTERVALS[@]}"; do
         --discover \
         -- --solver parasol -p 8 --ai none --output-solver \
         --solver-config-mode cache --verbosity error \
-        --restart-interval "$interval"
+        --restart-interval "$interval" \
+        --static-runtime 0
 done
 
 echo "=== Running with no bound sharing ==="
