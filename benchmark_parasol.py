@@ -100,7 +100,7 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
     print(f"    cmd: {' '.join(cmd)}", flush=True)
     start = time.perf_counter()
-    result = subprocess.run(cmd, capture_output=True)
+    result = subprocess.run(cmd, stdout=subprocess.PIPE)
     elapsed_ms = (time.perf_counter() - start) * 1000
 
     stdout = result.stdout.decode("utf-8", errors="replace")
