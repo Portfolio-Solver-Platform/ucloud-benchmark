@@ -167,9 +167,9 @@ def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path
 def main():
     parser = argparse.ArgumentParser(
         description="Benchmark Parasol static schedules. Use -- to separate benchmark args from parasol args.",
-        epilog="Example: %(prog)s schedules/ -r 1 -o results/run1 --discover -- --solver parasol -p 8 --ai none --output-solver"
+        epilog="Example: %(prog)s -s schedules/ -r 1 -o results/run1 --discover -- --solver parasol -p 8 --ai none --output-solver"
     )
-    parser.add_argument("schedules", nargs="*", help="Schedule CSV files or directories")
+    parser.add_argument("-s", "--schedules", nargs="*", help="Schedule CSV files or directories")
     parser.add_argument("-t", "--timeout", type=int, default=None, help="Timeout in seconds (applied via the timeout command)")
     parser.add_argument("-r", "--runs", type=int, default=3)
     parser.add_argument("-o", "--output", type=Path, default=Path("results/benchmark_run"))
