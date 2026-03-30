@@ -14,8 +14,9 @@ def discover_problems(base: Path, start_from_instance: str) -> list[tuple[Path, 
 
         models = sorted(folder.glob("*.mzn"))
         instances = sorted(
-            f for f in folder.iterdir()
-            if f.suffix in INSTANCE_EXTENSIONS
+            f for f in folder.rglob("*")
+            if f.is_file()
+            and f.suffix in INSTANCE_EXTENSIONS
             and not f.name.lower().startswith(EXCLUDED_PREFIXES)
         )
 

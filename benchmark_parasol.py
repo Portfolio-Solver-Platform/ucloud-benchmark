@@ -127,7 +127,7 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
 def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path | None],
                   timeout: int | None, runs: int, output_dir: Path, cores: int,
-                  parasol_args: list[str]):
+                  parasol_args: list[str], ai_label: str = "none"):
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "results.csv"
 
@@ -136,7 +136,7 @@ def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path
         writer.writerow(["schedule", "problem", "name", "model", "time_ms", "objective", "optimal", "last_result_from"])
 
         for schedule in schedules:
-            schedule_label = schedule.name if schedule else "none"
+            schedule_label = schedule.name if schedule else ai_label
             print(f"\nSchedule: {schedule_label}")
 
             for model, data in problems:
@@ -149,7 +149,7 @@ def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path
                 for run in range(runs):
                     kill_solvers()
                     time_ms, objective, status, stdout, last_result_from = run_parasol(model, data, schedule, timeout, parasol_args)
-                    schedule_stem = schedule.stem if schedule else "none"
+                    schedule_stem = schedule.stem if schedule else ai_label
 
                     # Save full output to .out file
                     out_filename = "-sep-".join([problem, model_name, name, schedule_stem, str(cores), str(run)]) + ".out"
@@ -203,9 +203,17 @@ def main():
     else:
         problems = [(args.problems_path / m, args.problems_path / d if d else None) for m, d in PROBLEMS]
 
+    # Derive a label for AI-driven schedules from --ai-config command=./script.py
+    ai_label = "none"
+    for i, a in enumerate(parasol_args):
+        if a == '--ai-config' and i + 1 < len(parasol_args):
+            config = parasol_args[i + 1]
+            if config.startswith('command='):
+                ai_label = Path(config.split('=', 1)[1]).stem
+
     print(f"Schedules: {len(schedules)}, Problems: {len(problems)}, Runs: {args.runs}")
     print(f"Parasol args: {parasol_args}")
-    run_benchmark(problems, schedules, args.timeout, args.runs, args.output, cores, parasol_args)
+    run_benchmark(problems, schedules, args.timeout, args.runs, args.output, cores, parasol_args, ai_label)
 
 
 if __name__ == "__main__":
