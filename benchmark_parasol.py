@@ -98,13 +98,16 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
     cmd.extend(parasol_args)
 
+    # Request timing output from parasol (via --mzn-flag to avoid collision with minizinc's --output-time)
+    if '--mzn-flag' not in cmd:
+        cmd.extend(['--mzn-flag', '--output-time'])
+
     print(f"    cmd: {' '.join(cmd)}", flush=True)
     start = time.perf_counter()
     result = subprocess.run(cmd, stdout=subprocess.PIPE)
-    elapsed_ms = (time.perf_counter() - start) * 1000
+    wallclock_ms = (time.perf_counter() - start) * 1000
 
     stdout = result.stdout.decode("utf-8", errors="replace")
-
 
     objectives = re.findall(r'_objective\s*=\s*(-?\d+);', stdout)
     objective = objectives[-1] if objectives else None
@@ -117,6 +120,17 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
         status = "Optimal"  # SAT problem with solution found
     else:
         status = "Unknown"
+
+    # Use parasol's reported time (% time elapsed: X.XXX) instead of wall-clock time
+    # This excludes solver shutdown overhead (~1s) and reflects actual solve time
+    time_matches = re.findall(r'% time elapsed:\s*([\d.]+)', stdout)
+    if time_matches:
+        elapsed_ms = float(time_matches[-1]) * 1000
+    elif not stdout.strip():
+        # Empty output = crash, treat as timeout
+        elapsed_ms = (timeout * 1000) if timeout else wallclock_ms
+    else:
+        elapsed_ms = wallclock_ms
 
     # Parse % NOTE lines to find which solver produced the final solution
     note_matches = re.findall(r'% NOTE: (.+?) found (?:objective|solution)', stdout)
