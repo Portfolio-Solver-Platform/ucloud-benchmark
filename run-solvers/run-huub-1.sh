@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 cd "$(dirname "$0")/.."
 
 for year in 2023 2024 2025; do
