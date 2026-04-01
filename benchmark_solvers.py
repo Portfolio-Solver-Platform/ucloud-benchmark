@@ -126,6 +126,10 @@ def run_solver(model: Path, data: Path | None, solver: str, cores: int,
     if status is None:
         status = "Satisfied" if has_solution else "Unknown"
 
+    # Empty output = crash, treat as timeout
+    if not stdout.strip() and status == "Unknown":
+        elapsed_ms = (timeout * 1000) if timeout else elapsed_ms
+
     return elapsed_ms, objective, status, stdout
 
 
