@@ -1,1 +1,4 @@
-python ../benchmark_parasol.py -r 1 -t 1200 -o ../../results/static-vs-no-static/no-static --problems-path ../../data/mznc2025_probs --discover -- --solver parasol -p 8 --ai command-line --ai-config command="./ai.py" --output-solver --solver-config-mode cache --verbosity error 
+#!/bin/bash
+set -eo pipefail
+
+python ../benchmark_parasol.py -r 1 -t 1200 -o ../../results/static-vs-no-static/no-static --problems-path ../../data/mznc2025_probs --discover -- --solver parasol -p 8 --ai command-line --ai-config command="./ai.py" --output-solver --solver-config-mode cache --verbosity error 2>&1 | tee no-static-out.txt

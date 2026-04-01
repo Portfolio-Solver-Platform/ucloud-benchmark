@@ -1,9 +1,10 @@
 #!/bin/bash
-set -e
+set -eo pipefail
 
 PORTFOLIO="cpsat-yuck"
 INTERVALS=(2 4 8 16 32)
 
+{
 for interval in "${INTERVALS[@]}"; do
     echo "=== Running with restart-interval=$interval ==="
     python ../benchmark_parasol.py -s "../../schedules/${PORTFOLIO}.csv" \
@@ -26,3 +27,4 @@ python ../benchmark_parasol.py -s "../../schedules/${PORTFOLIO}.csv" \
     -- --solver parasol -p 8 --ai none --output-solver \
     --solver-config-mode cache --verbosity error \
     --static-runtime 100000000
+} 2>&1 | tee bound-sharing-cpsat-yuck-out.txt

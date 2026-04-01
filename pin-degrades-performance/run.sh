@@ -1,3 +1,8 @@
+#!/bin/bash
+set -eo pipefail
+
+{
 python ../benchmark_parasol.py -r 1 -t 1200 -o ../../results/pin-degrades-performance/pin --problems-path ../../data/mznc2025_probs --discover -- --solver parasol -p 1 --ai none --output-solver --solver-config-mode cache --verbosity error --pin-solvers cp-sat --static-schedule cpsat.csv --static-runtime 1000000000000000
 
 python ../benchmark_parasol.py -r 1 -t 1200 -o ../../results/pin-degrades-performance/no-pin --problems-path ../../data/mznc2025_probs --discover -- --solver parasol -p 1 --ai none --output-solver --solver-config-mode cache --verbosity error --static-schedule cpsat.csv --static-runtime 1000000000000000
+} 2>&1 | tee pin-degrades-out.txt
