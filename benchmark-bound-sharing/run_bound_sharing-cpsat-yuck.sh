@@ -2,8 +2,7 @@
 set -eo pipefail
 
 PORTFOLIO="cpsat-yuck"
-# INTERVALS=(2 4 8 16 32 64)
-INTERVALS=(64)
+INTERVALS=(2 4 8 16 32 64)
 
 {
 for interval in "${INTERVALS[@]}"; do
@@ -19,13 +18,13 @@ for interval in "${INTERVALS[@]}"; do
         --static-runtime 0
 done
 
-# echo "=== Running with no bound sharing ==="
-# python ../benchmark_parasol.py -s "../../schedules/${PORTFOLIO}.csv" \
-#     -r 1 -t 1200 \
-#     -o "../../results/${PORTFOLIO}-bound-sharing-2025-none" \
-#     --problems-path ../../data/mznc2025_probs \
-#     --discover \
-#     -- --solver parasol -p 8 --ai none --output-solver \
-#     --solver-config-mode cache --verbosity error \
-#     --static-runtime 100000000
+echo "=== Running with no bound sharing ==="
+python ../benchmark_parasol.py -s "../../schedules/${PORTFOLIO}.csv" \
+    -r 1 -t 1200 \
+    -o "../../results/${PORTFOLIO}-bound-sharing-2025-none" \
+    --problems-path ../../data/mznc2025_probs \
+    --discover \
+    -- --solver parasol -p 8 --ai none --output-solver \
+    --solver-config-mode cache --verbosity error \
+    --static-runtime 100000000
 } 2>&1 | tee bound-sharing-cpsat-yuck-out.txt
