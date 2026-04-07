@@ -2,7 +2,7 @@
 set -eo pipefail
 
 PORTFOLIO="cpsat-chuffed"
-INTERVALS=(2 4 8 16 32 64)
+INTERVALS=(2 4 8 16 32 64 300)
 
 {
 for interval in "${INTERVALS[@]}"; do
@@ -27,4 +27,4 @@ python ../benchmark_parasol.py -s "../../schedules/${PORTFOLIO}.csv" \
     -- --solver parasol -p 8 --ai none --output-solver \
     --solver-config-mode cache --verbosity error \
     --static-runtime 100000000
-} 2>&1 | tee bound-sharing-cpsat-yuck-out.txt
+} 2>&1 | tee bound-sharing-cpsat-chuffed-out.txt
