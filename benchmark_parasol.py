@@ -121,16 +121,10 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
     else:
         status = "Unknown"
 
-    # Use parasol's reported time (% time elapsed: X.XXX) instead of wall-clock time
-    # This excludes solver shutdown overhead (~1s) and reflects actual solve time
-    time_matches = re.findall(r'% time elapsed:\s*([\d.]+)', stdout)
-    if time_matches:
-        elapsed_ms = float(time_matches[-1]) * 1000
-    elif not stdout.strip():
-        # Empty output = crash, treat as timeout
+    # Wall-clock time. Empty output = crash before any progress; treat as timeout.
+    elapsed_ms = wallclock_ms
+    if not stdout.strip() and status == "Unknown":
         elapsed_ms = (timeout * 1000) if timeout else wallclock_ms
-    else:
-        elapsed_ms = wallclock_ms
 
     # Parse % NOTE lines to find which solver produced the final solution
     note_matches = re.findall(r'% NOTE: (.+?) found (?:objective|solution)', stdout)
