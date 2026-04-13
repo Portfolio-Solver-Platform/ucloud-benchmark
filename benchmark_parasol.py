@@ -135,13 +135,15 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
 def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path | None],
                   timeout: int | None, runs: int, output_dir: Path, cores: int,
-                  parasol_args: list[str], ai_label: str = "none"):
+                  parasol_args: list[str], ai_label: str = "none", resume: bool = False):
     output_dir.mkdir(parents=True, exist_ok=True)
     csv_path = output_dir / "results.csv"
+    resuming = resume and csv_path.exists()
 
-    with open(csv_path, "w", newline="") as f:
+    with open(csv_path, "a" if resuming else "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow(["schedule", "problem", "name", "model", "time_ms", "objective", "optimal", "last_result_from"])
+        if not resuming:
+            writer.writerow(["schedule", "problem", "name", "model", "time_ms", "objective", "optimal", "last_result_from"])
 
         for schedule in schedules:
             schedule_label = schedule.name if schedule else ai_label
@@ -221,7 +223,8 @@ def main():
 
     print(f"Schedules: {len(schedules)}, Problems: {len(problems)}, Runs: {args.runs}")
     print(f"Parasol args: {parasol_args}")
-    run_benchmark(problems, schedules, args.timeout, args.runs, args.output, cores, parasol_args, ai_label)
+    resume = args.start_from_instance is not None
+    run_benchmark(problems, schedules, args.timeout, args.runs, args.output, cores, parasol_args, ai_label, resume)
 
 
 if __name__ == "__main__":
