@@ -126,9 +126,16 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
     if not stdout.strip() and status == "Unknown":
         elapsed_ms = (timeout * 1000) if timeout else wallclock_ms
 
-    # Parse % NOTE lines to find which solver produced the final solution
+    # Parse % NOTE lines to find which solver is responsible for the final status
     note_matches = re.findall(r'% NOTE: (.+?) found (?:objective|solution)', stdout)
-    last_result_from = note_matches[-1] if note_matches else ""
+    if status == "Unsat":
+        m = re.search(r'% NOTE: (.+?) got status =====UNSATISFIABLE=====', stdout)
+        last_result_from = m.group(1) if m else ""
+    elif status == "Optimal":
+        m = re.search(r'% NOTE: (.+?) got status ==========', stdout)
+        last_result_from = m.group(1) if m else (note_matches[-1] if note_matches else "")
+    else:
+        last_result_from = note_matches[-1] if note_matches else ""
 
     return elapsed_ms, objective, status, stdout, last_result_from
 
