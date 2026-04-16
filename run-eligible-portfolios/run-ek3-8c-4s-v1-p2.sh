@@ -2,7 +2,7 @@
 set -eo pipefail
 cd "$(dirname "$0")"
 
-PORTFOLIO="k2-8c-8s-v2-p2"
+PORTFOLIO="ek3-8c-4s-v1-p2"
 CORES=8
 
 for year in 2025 2024 2023; do

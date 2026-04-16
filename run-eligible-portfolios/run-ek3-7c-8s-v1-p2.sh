@@ -2,8 +2,8 @@
 set -eo pipefail
 cd "$(dirname "$0")"
 
-PORTFOLIO="k3-8c-4s-v1-p3"
-CORES=8
+PORTFOLIO="ek3-7c-8s-v1-p2"
+CORES=7
 
 for year in 2025 2024 2023; do
     echo "=== ${PORTFOLIO} ${year} ==="
