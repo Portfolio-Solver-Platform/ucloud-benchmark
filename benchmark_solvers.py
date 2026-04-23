@@ -184,11 +184,21 @@ def main():
     parser.add_argument("-o", "--output", type=Path, default=Path("results/solver_run"))
     parser.add_argument("--problems-path", type=Path, default=Path("/problems"))
     parser.add_argument("--discover", action="store_true", help="Discover problems from --problems-path instead of using hardcoded list")
+    parser.add_argument("--instances", nargs="+", default=None,
+                        help="Specific instances as 'model[:data]' pairs, paths relative to --problems-path")
     parser.add_argument("--start-from-instance", type=str, default=None)
     args = parser.parse_args()
 
     if args.discover:
         problems = discover_problems(args.problems_path, args.start_from_instance)
+    elif args.instances:
+        problems = []
+        for spec in args.instances:
+            if ":" in spec:
+                m, d = spec.split(":", 1)
+                problems.append((args.problems_path / m, args.problems_path / d))
+            else:
+                problems.append((args.problems_path / spec, None))
     else:
         problems = [(args.problems_path / m, args.problems_path / d if d else None) for m, d in PROBLEMS]
 
