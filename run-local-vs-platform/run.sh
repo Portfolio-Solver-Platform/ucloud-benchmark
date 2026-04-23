@@ -1,6 +1,12 @@
 #!/bin/bash
 set -eo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")"
+
+# Resolve to absolute paths (docker -v requires them)
+BENCHMARK_DIR="$(cd .. && pwd)"
+DATA_DIR="$(cd ../../data/mznc2025_probs && pwd)"
+RESULTS_DIR="$(cd ../.. && pwd)/results"
+mkdir -p "$RESULTS_DIR/local-vs-platform"
 
 INSTANCES=(
     "work-task-variation/work-task-variation.mzn:work-task-variation/generated-seed-4-length-14-open-12-workers-12-block-15.dzn"
@@ -10,8 +16,15 @@ INSTANCES=(
     "hitori/hitori.mzn:hitori/h14-1.dzn"
 )
 
-echo "=== local-vs-platform: cp-sat 8c, 3 runs ==="
-python benchmark_solvers.py -s cp-sat -p 8 -r 3 -t 1200 \
-    -o "../results/local-vs-platform" \
-    --problems-path "../data/mznc2025_probs" \
-    --instances "${INSTANCES[@]}" 2>&1 | tee run-local-vs-platform/out.txt
+echo "=== local-vs-platform (docker): cp-sat 8c, 3 runs ==="
+docker run --rm \
+    -v "${BENCHMARK_DIR}:/benchmark" \
+    -v "${DATA_DIR}:/problems" \
+    -v "${RESULTS_DIR}:/results" \
+    -w /benchmark \
+    parasol \
+    python3.13 benchmark_solvers.py \
+        -s cp-sat -p 8 -r 3 -t 1200 \
+        -o /results/local-vs-platform \
+        --problems-path /problems \
+        --instances "${INSTANCES[@]}" 2>&1 | tee out.txt
