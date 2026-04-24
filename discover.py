@@ -23,18 +23,31 @@ def discover_problems(base: Path, start_from_instance: str) -> list[tuple[Path, 
         if not models:
             continue
 
-        # skip instances until start instance found
+        # Skip (model, instance) pairs until start point found. The start
+        # name is matched first against .dzn/.json instance filenames; if no
+        # match, we fall back to matching .mzn model filenames (needed for
+        # "models-only" problem dirs like connect/, where each .mzn file is
+        # itself an instance).
         if start_from_instance is not None and not found_instance:
-            skip = 0
+            skip_i = None
             for i, instance in enumerate(instances):
                 if start_from_instance in instance.name:
+                    skip_i = i
                     found_instance = True
-                    skip = i
                     break
+            skip_m = None
+            if not found_instance:
+                for i, model in enumerate(models):
+                    if start_from_instance in model.name:
+                        skip_m = i
+                        found_instance = True
+                        break
             if not found_instance:
                 continue
-            else:
-                instances = instances[skip:]
+            if skip_i is not None:
+                instances = instances[skip_i:]
+            if skip_m is not None:
+                models = models[skip_m:]
 
         if len(models) == 1 and instances:
             for instance in instances:
