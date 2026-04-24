@@ -1,0 +1,10 @@
+Solvers: ['cp-sat'], Cores: [8], Problems: 5, Runs: 3
+
+Solver: cp-sat, Cores: 8
+  14-10-0-2_3: 46.8s(O) 36.9s(O) 38.1s(O) 
+  FBDk07: 68.8s(O) 76.4s(O) 75.3s(O) 
+  instance4_0p15: 18.6s(O) 89.3s(O) 88.2s(O) 
+  h14-1: 72.7s(O) 73.1s(O) 77.1s(O) 
+  test03: 233.4s(O) 216.6s(O) 156.9s(O) 
+
+Results written to: /results/local-vs-platform
