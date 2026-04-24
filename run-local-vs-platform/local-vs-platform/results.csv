@@ -1,0 +1,16 @@
+solver,cores,problem,name,model,time_ms,objective,status
+cp-sat,8,EchoSched,14-10-0-2_3,JSP0,46774,11786,Optimal
+cp-sat,8,EchoSched,14-10-0-2_3,JSP0,36858,11786,Optimal
+cp-sat,8,EchoSched,14-10-0-2_3,JSP0,38070,11786,Optimal
+cp-sat,8,fbd1,FBDk07,FBD1,68805,130,Optimal
+cp-sat,8,fbd1,FBDk07,FBD1,76381,130,Optimal
+cp-sat,8,fbd1,FBDk07,FBD1,75293,130,Optimal
+cp-sat,8,atsp,instance4_0p15,atsp,18585,562581,Optimal
+cp-sat,8,atsp,instance4_0p15,atsp,89265,562581,Optimal
+cp-sat,8,atsp,instance4_0p15,atsp,88236,562581,Optimal
+cp-sat,8,hitori,h14-1,hitori,72700,572,Optimal
+cp-sat,8,hitori,h14-1,hitori,73114,572,Optimal
+cp-sat,8,hitori,h14-1,hitori,77143,572,Optimal
+cp-sat,8,ihtc-2024-kletzander,test03,model4_opt,233382,9385,Optimal
+cp-sat,8,ihtc-2024-kletzander,test03,model4_opt,216585,9385,Optimal
+cp-sat,8,ihtc-2024-kletzander,test03,model4_opt,156910,9385,Optimal
