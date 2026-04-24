@@ -16,7 +16,7 @@
             "extras": {
                 "repetitions": 3,
                 "solvers": [
-                    {"id": 3, "vcpus": 8, "memory_gib": 20.0}
+                    {"id": 2, "vcpus": 8, "memory_gib": 20.0}
                 ]
             }
         }
