@@ -9,11 +9,11 @@ RESULTS_DIR="$(cd ../.. && pwd)/results"
 mkdir -p "$RESULTS_DIR/local-vs-platform"
 
 INSTANCES=(
-    "work-task-variation/work-task-variation.mzn:work-task-variation/generated-seed-4-length-14-open-12-workers-12-block-15.dzn"
-    "EchoSched/JSP0.mzn:EchoSched/13-14-0-2_6.dzn"
-    "products-and-shelves/product-and-shelves.mzn:products-and-shelves/ps-50-09.dzn"
+    "EchoSched/JSP0.mzn:EchoSched/14-10-0-2_3.dzn"
+    "fbd1/FBD1.mzn:fbd1/FBDk07.dzn"
     "atsp/atsp.mzn:atsp/instance4_0p15.dzn"
     "hitori/hitori.mzn:hitori/h14-1.dzn"
+    "ihtc-2024-kletzander/model4_opt.mzn:ihtc-2024-kletzander/test03.dzn"
 )
 
 echo "=== local-vs-platform (docker): cp-sat 8c, 3 runs ==="
