@@ -1,0 +1,24 @@
+{
+    "name": "local-vs-platform: cp-sat 8c",
+    "timeout": 1200,
+    "vcpus": 8,
+    "memory_gib": 20.0,
+    "problem_groups": [
+        {
+            "problem_group": 1,
+            "problems": [
+                {"problem": 21, "instances": [156]},
+                {"problem": 23, "instances": [165]},
+                {"problem": 3,  "instances": [19]},
+                {"problem": 36, "instances": [296]},
+                {"problem": 39, "instances": [323]}
+            ],
+            "extras": {
+                "repetitions": 3,
+                "solvers": [
+                    {"id": 3, "vcpus": 8, "memory_gib": 20.0}
+                ]
+            }
+        }
+    ]
+}
