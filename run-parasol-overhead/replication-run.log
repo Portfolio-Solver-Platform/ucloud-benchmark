@@ -1,0 +1,11 @@
+=== parasol-overhead replication ===
+  N_RUNS    = 6
+  timeout   = 1200s
+  instances = hitori/hitori.mzn:hitori/h14-1.dzn EchoSched/JSP0.mzn:EchoSched/14-10-0-2_3.dzn
+  output    = /home/sofus/speciale/ai/results/parasol-overhead-replication
+
+=== [1/2] standalone (minizinc --solver cp-sat -p 8) ===
+Solvers: ['cp-sat'], Cores: [8], Problems: 2, Runs: 6
+
+Solver: cp-sat, Cores: 8
+  h14-1: 

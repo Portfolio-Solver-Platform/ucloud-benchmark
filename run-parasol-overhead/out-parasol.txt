@@ -1,0 +1,20 @@
+Schedules: 1, Problems: 2, Runs: 6
+Parasol args: ['--solver', 'parasol', '-p', '8', '--ai', 'none', '--output-solver', '--solver-config-mode', 'cache', '--verbosity', 'error', '--static-runtime', '100000000']
+
+Schedule: cpsat8.csv
+  h14-1:     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+70.6s(O)     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+70.3s(O)     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+83.3s(O)     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+77.2s(O)     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+82.7s(O)     cmd: timeout 1200 minizinc /problems/hitori/hitori.mzn /problems/hitori/h14-1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+78.0s(O) 
+  14-10-0-2_3:     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+36.4s(O)     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+44.7s(O)     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+30.6s(O)     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+44.3s(O)     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+45.2s(O)     cmd: timeout 1200 minizinc /problems/EchoSched/JSP0.mzn /problems/EchoSched/14-10-0-2_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+38.2s(O) 
+
+Results written to: /results/parasol

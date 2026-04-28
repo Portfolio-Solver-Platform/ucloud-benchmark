@@ -1,0 +1,7 @@
+Solvers: ['cp-sat'], Cores: [8], Problems: 2, Runs: 6
+
+Solver: cp-sat, Cores: 8
+  h14-1: 70.7s(O) 75.2s(O) 90.2s(O) 78.3s(O) 67.1s(O) 81.5s(O) 
+  14-10-0-2_3: 48.1s(O) 43.3s(O) 41.7s(O) 41.3s(O) 45.2s(O) 33.7s(O) 
+
+Results written to: /results/standalone
