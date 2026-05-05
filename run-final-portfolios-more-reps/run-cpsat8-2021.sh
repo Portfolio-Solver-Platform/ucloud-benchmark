@@ -10,7 +10,7 @@ year=2021
     echo "=== ${PORTFOLIO} ${year} ==="
     python ../benchmark_parasol.py -s "../solvers/cpsat8.csv" \
         -r 3 -t 1200 \
-        -o "../../results/portfolios-final/${PORTFOLIO}/${PORTFOLIO}-${year}" \
+        -o "../../results/final-many-reps/${PORTFOLIO}/${PORTFOLIO}-${year}" \
         --problems-path "../../data/mzn-challenge/${year}" \
         --discover \
         -- --solver parasol -p ${CORES} --ai none --output-solver \
