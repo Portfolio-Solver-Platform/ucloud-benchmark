@@ -1,0 +1,205 @@
+=== [2023 / standalone] ===
+Solvers: ['cp-sat'], Cores: [8], Problems: 100, Runs: 1
+
+Solver: cp-sat, Cores: 8
+  chessboard3: 4.5s(O) 
+  chessboard4: 0.2s(O) 
+  chessboard_n12_1: 20.0s(U) 
+  chessboard_n39_2: 20.0s(U) 
+  chessboard_n9_1: 20.0s(U) 
+  mips_gcc.flow.find_regno_partial: 11.1s(O) 
+  mips_gcc.varasm.default_named_section_asm_out_destructor: 20.0s(U) 
+  mips_mesa.eval.gl_Map1f: 20.0s(U) 
+  mips_pegwit.ec_vlong.vlShortLshift: 11.9s(O) 
+  mips_rasta.mapping.comp_Jboundaries: 13.1s(O) 
+  handball10: 2.7s(O) 
+  handball2: 2.3s(O) 
+  handball4: 2.3s(O) 
+  handball8: 1.7s(O) 
+  handball9: 2.3s(O) 
+  BDARUMA_run_code_of_0_block_108_233_1_extended_input: 
+    STDERR: {Z(CALLER_0), U(SLOAD_0), U(ISZERO_0), B(GT_0), B(KECCAK256_0), B(AND_0), B(SUB_0), B(SHL_0), B(KECCAK256_1), P(PUSH [tag]_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5), S(MSTORE_0), S(MSTORE_1), S(MSTORE_2), S(MSTORE_3), DUP(1), DUP(2), DUP(3), DUP(4), DUP(5), DUP(6), DUP(7), DUP(8), DUP(9), DUP(10), DUP(11), DUP(12), DUP(13), DUP(14), DUP(15), DUP(16), SWAP(1), SWAP(2), SWAP(3), SWAP(4), SWAP(5), SWAP(6), SWAP(7), SWAP(8), SWAP(9), SWAP(10), SWAP(11), SWAP(12), SWAP(13), SWAP(14), SWAP(15), SWAP(16), POP, NOP}
+uses: [0, 2, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 2, 2, 1, 2, 1]
+creates: [s25, s18, s19, s16, s17, s22, s23, s24, s26, s15, s28, s29, s30, s31, s32, s33, ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., .]
+creator: [Z(CALLER_0), U(SLOAD_0), U(ISZERO_0), B(GT_0), B(KECCAK256_0), B(AND_0), B(SUB_0), B(SHL_0), B(KECCAK256_1), P(PUSH [tag]_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5)]
+maxdups = 11 maxpops = 0 uses: 37 null = 0 unused: {} creates something: 16 startlength: 10
+lcount: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ucount: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 2, 2, 1, 2, 1, 1, 1, 1, 1, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 0, 20]
+SLOAD_0 -> s17:U -> B(KECCAK256_0)
+ISZERO_0 -> s16:U -> B(GT_0)
+KECCAK256_0 -> s28:1Z -> P(PUSH_0)
+KECCAK256_0 -> s29:12 -> P(PUSH_1)
+SUB_0 -> s24:1N -> B(SHL_0)
+SHL_0 -> s31:1Z -> P(PUSH_3)
+SHL_0 -> s30:12 -> P(PUSH_2)
+KECCAK256_1 -> s28:1Z -> P(PUSH_0)
+KECCAK256_1 -> s29:12 -> P(PUSH_1)
+MSTORE_0 -> s28:1Z -> P(PUSH_0)
+MSTORE_0 -> s22:12 -> B(AND_0)
+MSTORE_1 -> s32:1Z -> P(PUSH_4)
+MSTORE_1 -> s33:12 -> P(PUSH_5)
+MSTORE_2 -> s28:1Z -> P(PUSH_0)
+MSTORE_2 -> s25:12 -> Z(CALLER_0)
+MSTORE_3 -> s32:1Z -> P(PUSH_4)
+MSTORE_3 -> s26:12 -> B(KECCAK256_1)
+20.0s(U) 
+  BDARUMA_run_code_of_0_block_284_170_0_input: 
+    STDERR: {B(SUB_0), P(PUSH [tag]_1), P(PUSH [tag]_0), P(PUSH_0), DUP(1), DUP(2), DUP(3), DUP(4), DUP(5), DUP(6), DUP(7), DUP(8), DUP(9), SWAP(1), SWAP(2), SWAP(3), SWAP(4), SWAP(5), SWAP(6), SWAP(7), SWAP(8), POP, NOP}
+uses: [3, 2, 0, 1, 1, 3, 1, 3]
+creates: [., ., s10, s9, s11, s12, ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., .]
+creator: [B(SUB_0), P(PUSH [tag]_1), P(PUSH [tag]_0), P(PUSH_0)]
+maxdups = 5 maxpops = 1 uses: 14 null = 3 unused: {s1} creates something: 4 startlength: 3
+lcount: [0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+ucount: [0, 0, 1, 1, 1, 3, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 1, 6]
+SUB_0 -> s12:1Z -> P(PUSH_0)
+0.3s(O) 
+  Kongu_run_code_of_0_block_240_0_input: 
+    STDERR: {Z(TIMESTAMP_0), U(SLOAD_0), B(EQ_0), B(SHL_1), B(SHL_0), B(OR_1), B(OR_0), B(KECCAK256_1), B(MUL_0), B(ADD_1), B(KECCAK256_0), B(ADD_0), B(AND_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5), P(PUSH_6), P(PUSH_7), P(PUSH_8), P(PUSH_9), P(PUSH_10), S(MSTORE_3), S(MSTORE_2), S(MSTORE_1), S(MSTORE_0), S(SSTORE_1), S(SSTORE_0), DUP(1), DUP(2), DUP(3), DUP(4), DUP(5), DUP(6), DUP(7), DUP(8), DUP(9), DUP(10), DUP(11), DUP(12), DUP(13), DUP(14), DUP(15), DUP(16), SWAP(1), SWAP(2), SWAP(3), SWAP(4), SWAP(5), SWAP(6), SWAP(7), SWAP(8), SWAP(9), SWAP(10), SWAP(11), SWAP(12), SWAP(13), SWAP(14), SWAP(15), POP, NOP}
+uses: [0, 4, 4, 4, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1]
+creates: [s33, s25, s35, s34, s32, s31, s27, s26, s23, s22, s21, s14, s11, s37, s38, s39, s40, s41, s42, s43, s44, s45, s46, s47, ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., .]
+creator: [Z(TIMESTAMP_0), U(SLOAD_0), B(EQ_0), B(SHL_1), B(SHL_0), B(OR_1), B(OR_0), B(KECCAK256_1), B(MUL_0), B(ADD_1), B(KECCAK256_0), B(ADD_0), B(AND_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5), P(PUSH_6), P(PUSH_7), P(PUSH_8), P(PUSH_9), P(PUSH_10)]
+maxdups = 19 maxpops = 0 uses: 46 null = 0 unused: {} creates something: 24 startlength: 3
+lcount: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ucount: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 0, 27]
+OR_1 -> {B(SHL_0),B(SHL_1)}
+ADD_1 -> {B(MUL_0),U(SLOAD_0)}
+EQ_0 -> s42:2Z -> P(PUSH_5)
+SHL_1 -> s43:1Z -> P(PUSH_6)
+SHL_1 -> s35:12 -> B(EQ_0)
+SHL_0 -> s44:1Z -> P(PUSH_7)
+SHL_0 -> s33:12 -> Z(TIMESTAMP_0)
+KECCAK256_1 -> s37:1Z -> P(PUSH_0)
+KECCAK256_1 -> s45:12 -> P(PUSH_8)
+KECCAK256_0 -> s37:1Z -> P(PUSH_0)
+KECCAK256_0 -> s45:12 -> P(PUSH_8)
+MSTORE_3 -> s39:1Z -> P(PUSH_2)
+MSTORE_3 -> s40:12 -> P(PUSH_3)
+MSTORE_2 -> s37:1Z -> P(PUSH_0)
+MSTORE_1 -> s39:1Z -> P(PUSH_2)
+MSTORE_1 -> s41:12 -> P(PUSH_4)
+MSTORE_0 -> s37:1Z -> P(PUSH_0)
+SSTORE_1 -> s26:1N -> B(KECCAK256_1)
+20.1s(U) 
+  PlaylinkAirdrop_run_code_of_0_block_216_0_input: 
+    STDERR: {U(MLOAD_0), B(ADD_5), B(ADD_4), B(ADD_3), B(ADD_2), B(ADD_1), B(ADD_0), P(PUSH [tag]_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5), S(MSTORE_5), S(MSTORE_4), S(MSTORE_3), S(MSTORE_2), S(MSTORE_1), S(MSTORE_0), DUP(1), DUP(2), DUP(3), DUP(4), DUP(5), DUP(6), DUP(7), DUP(8), DUP(9), DUP(10), SWAP(1), SWAP(2), SWAP(3), SWAP(4), SWAP(5), SWAP(6), SWAP(7), SWAP(8), SWAP(9), POP, NOP}
+uses: [0, 2, 1, 1, 1, 1, 1, 2, 1, 1, 6, 4, 3, 1, 2, 1, 1]
+creates: [., s9, s8, s6, s5, s15, s13, s11, s4, s18, s19, s20, s21, s22, s23, ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., .]
+creator: [U(MLOAD_0), B(ADD_5), B(ADD_4), B(ADD_3), B(ADD_2), B(ADD_1), B(ADD_0), P(PUSH [tag]_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), P(PUSH_3), P(PUSH_4), P(PUSH_5)]
+maxdups = 13 maxpops = 0 uses: 29 null = 0 unused: {} creates something: 14 startlength: 2
+lcount: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ucount: [0, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 19, 19, 19, 19, 19, 19, 19, 19, 19, 0, 19]
+MLOAD_0 -> s19:U -> P(PUSH_1)
+ADD_5 -> s20:2Z -> P(PUSH_2)
+ADD_4 -> s21:1Z -> P(PUSH_3)
+ADD_2 -> s23:2Z -> P(PUSH_5)
+ADD_1 -> s19:2Z -> P(PUSH_1)
+ADD_0 -> s21:2Z -> P(PUSH_3)
+MSTORE_4 -> s15:1N -> B(ADD_2)
+MSTORE_3 -> s13:1N -> B(ADD_1)
+MSTORE_2 -> s11:1N -> B(ADD_0)
+MSTORE_0 -> s19:1Z -> P(PUSH_1)
+MSTORE_0 -> s8:12 -> B(ADD_5)
+20.0s(U) 
+  isolated_block_6_0_input: 
+    STDERR: {U(MLOAD_0), B(SHL_0), P(PUSH_0), P(PUSH_1), P(PUSH_2), DUP(1), DUP(2), DUP(3), DUP(4), DUP(5), DUP(6), DUP(7), DUP(8), DUP(9), DUP(10), DUP(11), DUP(12), DUP(13), SWAP(1), SWAP(2), SWAP(3), SWAP(4), SWAP(5), SWAP(6), SWAP(7), SWAP(8), SWAP(9), SWAP(10), SWAP(11), SWAP(12), POP, NOP}
+uses: [2, 1, 1, 5, 1, 2, 1, 2, 1, 1, 1]
+creates: [., s13, s14, s19, s20, s21, ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., ., .]
+creator: [U(MLOAD_0), B(SHL_0), P(PUSH_0), P(PUSH_1), P(PUSH_2)]
+maxdups = 6 maxpops = 0 uses: 18 null = 2 unused: {} creates something: 5 startlength: 5
+lcount: [0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+ucount: [0, 1, 1, 1, 1, 1, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 0, 10]
+SHL_0 -> s20:1Z -> P(PUSH_1)
+SHL_0 -> s21:12 -> P(PUSH_2)
+0.9s(O) 
+  gamete_nl20_m30_12983649: 20.1s(U) 
+  gamete_nl20_m30_778477: 13.9s(O) 
+  gamete_nl20_m40_10408565: 15.5s(O) 
+  gamete_nl7_m10_134: 0.7s(O) 
+  gamete_nl7_m10_181: 1.7s(O) 
+  3_20_0.15_3: 0.1s(O) 
+  3_20_0.30_4: 0.2s(O) 
+  3_20_0.40_2: 0.6s(O) 
+  3_25_0.10_2: 0.2s(O) 
+  3_25_0.15_4: 0.2s(O) 
+  j30_25_5: 0.2s(O) 
+  j30_29_3: 0.6s(O) 
+  j30_33_5: 0.2s(O) 
+  j30_41_8: 0.2s(O) 
+  j30_54_2: 0.7s(O) 
+  rnd_n10_p1500_c15_s1: 
+    STDERR: makespan = 405;
+0.6s(O) 
+  rnd_n10_p2000_c15_s1: 
+    STDERR: makespan = 405;
+0.6s(O) 
+  rnd_n20_p1000_c10_s1: 
+    STDERR: makespan = 570;
+20.0s(U) 
+  rnd_n40_p1000_c20_s1: 
+    STDERR: makespan = 4080;
+20.0s(U) 
+  rnd_n75_p1000_c50_s1: 
+    STDERR: makespan = 40650;
+20.0s(U) 
+  n12: 20.0s(U) 
+  n5: 0.2s(O) 
+  n7: 1.7s(O) 
+  n8: 20.0s(U) 
+  n9: 20.0s(U) 
+  chicroster_dataset_10: 0.2s(O) 
+  chicroster_dataset_12: 0.2s(O) 
+  chicroster_dataset_8: 0.1s(O) 
+  chicroster_dataset_9: 0.2s(O) 
+  chicroster_dataset_large_16: 0.2s(O) 
+  large: 20.1s(O) 
+  s100_e20_c8: 0.5s(O) 
+  s200_e50_c8: 0.4s(O) 
+  s50_e50_c3: 0.3s(O) 
+  small: 1.7s(O) 
+  easy_1: 0.2s(O) 
+  easy_3: 0.3s(O) 
+  hard_0: 20.0s(U) 
+  medium_6: 4.7s(O) 
+  very_hard_5: 20.0s(U) 
+  sudoku_p20: 0.3s(S) 
+  sudoku_p26: 5.0s(S) 
+  sudoku_p28: 1.0s(S) 
+  sudoku_p48: 0.1s(S) 
+  sudoku_p89: 0.2s(S) 
+  p1000_m10_r200_c15: 20.0s(U) 
+  p1000_m20_r200_c20: 20.1s(U) 
+  p1000_m3_r100_c10: 0.2s(O) 
+  p2000_m10_r500_c20: 20.3s(U) 
+  p2000_m16_r1000_c200: 20.0s(U) 
+  t100m20r3-14: 0.7s(O) 
+  t20m10r10-17: 0.1s(O) 
+  t30m20r3-20: 0.1s(O) 
+  t500m50r10-8: 20.1s(U) 
+  t50m20r10-17: 0.2s(O) 
+  n10_k15_c5000_l10000_u11000_r49: 0.8s(O) 
+  n10_k3_c5000_l10000_u10100_r46: 0.5s(O) 
+  n20_k15_c5000_l100_u200_r32: 17.4s(O) 
+  n20_k20_c1000_l1000_u2000_r46: 5.6s(O) 
+  n20_k3_c10000_l100_u200_r81: 13.4s(O) 
+  L10-T48G10L10: 0.7s(O) 
+  L12-T48G15L10: 3.1s(O) 
+  L15-T48G30L15: 20.0s(U) 
+  L3-T6G5L5: 0.1s(O) 
+  L7-T12G5L5: 0.1s(O) 
+  horizon12: 1.5s(O) 
+  horizon19: 11.2s(O) 
+  horizon20: 14.5s(O) 
+  horizon28: 20.0s(U) 
+  horizon6: 0.3s(O) 
+  vrplc10_5_20_s3: 20.0s(U) 
+  vrplc11_5_15_s4: 20.0s(U) 
+  vrplc13_11_20_s4: 20.0s(U) 
+  vrplc9_5_10_s2: 2.0s(O) 
+  vrplc9_5_15_s2: 20.0s(U) 
+  p_4_GG_GG_yumi_grid_setup_7_7: 2.7s(O) 
+  p_4_SG_SG_yumi_grid_setup_3_3: 4.5s(O) 
+  p_5_GG_GGG_yumi_grid_setup_7_7: 3.7s(O) 
+  p_7_GGG_GGGG_yumi_grid_setup_3_4: 20.0s(U) 
+  p_9_GGGG_GGGGG_yumi_grid_setup_3_4: 20.0s(U) 
+
+Results written to: /results/standalone-2023

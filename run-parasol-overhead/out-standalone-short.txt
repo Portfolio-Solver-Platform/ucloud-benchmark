@@ -1,0 +1,8 @@
+Solvers: ['cp-sat'], Cores: [8], Problems: 3, Runs: 10
+
+Solver: cp-sat, Cores: 8
+  instance11_0p25: 0.3s(O) 0.4s(O) 0.4s(O) 0.4s(O) 0.3s(O) 0.4s(O) 0.3s(O) 0.3s(O) 0.4s(O) 0.3s(O) 
+  h11-1: 1.0s(O) 1.0s(O) 1.1s(O) 1.2s(O) 1.0s(O) 0.8s(O) 1.4s(O) 1.1s(O) 1.4s(O) 0.9s(O) 
+  tower_050_050_10_050-03: 1.1s(O) 1.1s(O) 1.1s(O) 1.1s(O) 1.1s(O) 1.1s(O) 1.1s(O) 1.1s(O) 1.3s(O) 1.1s(O) 
+
+Results written to: /results/standalone

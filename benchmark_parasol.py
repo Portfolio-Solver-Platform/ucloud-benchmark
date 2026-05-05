@@ -84,7 +84,8 @@ def resolve_schedules(args: list[str]) -> list[Path]:
 
 
 def run_parasol(model: Path, data: Path | None, schedule: Path | None,
-                timeout: int | None, parasol_args: list[str]) -> tuple[float, str | None, str, str, str]:
+                timeout: int | None, parasol_args: list[str],
+                stderr_path: Path | None = None) -> tuple[float, str | None, str, str, str]:
     cmd = []
     if timeout:
         cmd.extend(["timeout", str(timeout)])
@@ -104,7 +105,13 @@ def run_parasol(model: Path, data: Path | None, schedule: Path | None,
 
     print(f"    cmd: {' '.join(cmd)}", flush=True)
     start = time.perf_counter()
-    result = subprocess.run(cmd, stdout=subprocess.PIPE)
+    # Write stderr straight to disk (not PIPE) so diagnostic messages survive
+    # even if this Python process is SIGKILLed (e.g. by the OOM killer) mid-run.
+    if stderr_path is not None:
+        with open(stderr_path, "wb") as stderr_file:
+            result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=stderr_file)
+    else:
+        result = subprocess.run(cmd, stdout=subprocess.PIPE)
     wallclock_ms = (time.perf_counter() - start) * 1000
 
     stdout = result.stdout.decode("utf-8", errors="replace")
@@ -165,12 +172,21 @@ def run_benchmark(problems: list[tuple[Path, Path | None]], schedules: list[Path
 
                 for run in range(runs):
                     kill_solvers()
-                    time_ms, objective, status, stdout, last_result_from = run_parasol(model, data, schedule, timeout, parasol_args)
                     schedule_stem = schedule.stem if schedule else ai_label
+                    out_filename = "-sep-".join([problem, model_name, name, schedule_stem, str(cores), str(run)]) + ".out"
+                    stderr_path = output_dir / (out_filename + ".stderr")
+                    time_ms, objective, status, stdout, last_result_from = run_parasol(
+                        model, data, schedule, timeout, parasol_args, stderr_path=stderr_path)
 
                     # Save full output to .out file
-                    out_filename = "-sep-".join([problem, model_name, name, schedule_stem, str(cores), str(run)]) + ".out"
                     (output_dir / out_filename).write_text(stdout)
+
+                    # Delete empty stderr files; keep non-empty ones for debugging.
+                    try:
+                        if stderr_path.stat().st_size == 0:
+                            stderr_path.unlink()
+                    except OSError:
+                        pass
 
                     writer.writerow([schedule_stem, problem, name, model_name, f"{time_ms:.0f}", objective or "", status, last_result_from])
                     f.flush()
@@ -194,6 +210,8 @@ def main():
     parser.add_argument("--problems-path", type=Path, default=Path("/problems"))
     parser.add_argument("--discover", action="store_true", help="Discover problems from --problems-path instead of using hardcoded list")
     parser.add_argument("--start-from-instance", type=str, default=None)
+    parser.add_argument("--instances", nargs="+", default=None,
+                        help="Specific instances as 'model[:data]' pairs, paths relative to --problems-path")
 
     args, parasol_args = parser.parse_known_args()
 
@@ -217,6 +235,14 @@ def main():
 
     if args.discover:
         problems = discover_problems(args.problems_path, args.start_from_instance)
+    elif args.instances:
+        problems = []
+        for spec in args.instances:
+            if ":" in spec:
+                m, d = spec.split(":", 1)
+                problems.append((args.problems_path / m, args.problems_path / d))
+            else:
+                problems.append((args.problems_path / spec, None))
     else:
         problems = [(args.problems_path / m, args.problems_path / d if d else None) for m, d in PROBLEMS]
 

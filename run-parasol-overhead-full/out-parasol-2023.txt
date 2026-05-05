@@ -1,0 +1,207 @@
+=== [2023 / parasol] ===
+Schedules: 1, Problems: 100, Runs: 1
+Parasol args: ['--solver', 'parasol', '-p', '8', '--ai', 'none', '--output-solver', '--solver-config-mode', 'cache', '--verbosity', 'error', '--static-runtime', '100000000']
+
+Schedule: cpsat8.csv
+  chessboard3:     cmd: timeout 20 minizinc /problems/chessboard/chessboard.mzn /problems/chessboard/chessboard3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+4.5s(O) 
+  chessboard4:     cmd: timeout 20 minizinc /problems/chessboard/chessboard.mzn /problems/chessboard/chessboard4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  chessboard_n12_1:     cmd: timeout 20 minizinc /problems/chessboard/chessboard.mzn /problems/chessboard/chessboard_n12_1.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  chessboard_n39_2:     cmd: timeout 20 minizinc /problems/chessboard/chessboard.mzn /problems/chessboard/chessboard_n39_2.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  chessboard_n9_1:     cmd: timeout 20 minizinc /problems/chessboard/chessboard.mzn /problems/chessboard/chessboard_n9_1.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  mips_gcc.flow.find_regno_partial:     cmd: timeout 20 minizinc /problems/code-generator/unison.mzn /problems/code-generator/mips_gcc.flow.find_regno_partial.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+10.2s(O) 
+  mips_gcc.varasm.default_named_section_asm_out_destructor:     cmd: timeout 20 minizinc /problems/code-generator/unison.mzn /problems/code-generator/mips_gcc.varasm.default_named_section_asm_out_destructor.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  mips_mesa.eval.gl_Map1f:     cmd: timeout 20 minizinc /problems/code-generator/unison.mzn /problems/code-generator/mips_mesa.eval.gl_Map1f.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  mips_pegwit.ec_vlong.vlShortLshift:     cmd: timeout 20 minizinc /problems/code-generator/unison.mzn /problems/code-generator/mips_pegwit.ec_vlong.vlShortLshift.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+10.4s(O) 
+  mips_rasta.mapping.comp_Jboundaries:     cmd: timeout 20 minizinc /problems/code-generator/unison.mzn /problems/code-generator/mips_rasta.mapping.comp_Jboundaries.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+11.7s(O) 
+  handball10:     cmd: timeout 20 minizinc /problems/elitserien/handball.mzn /problems/elitserien/handball10.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.3s(O) 
+  handball2:     cmd: timeout 20 minizinc /problems/elitserien/handball.mzn /problems/elitserien/handball2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.3s(O) 
+  handball4:     cmd: timeout 20 minizinc /problems/elitserien/handball.mzn /problems/elitserien/handball4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.1s(O) 
+  handball8:     cmd: timeout 20 minizinc /problems/elitserien/handball.mzn /problems/elitserien/handball8.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.1s(O) 
+  handball9:     cmd: timeout 20 minizinc /problems/elitserien/handball.mzn /problems/elitserien/handball9.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.9s(O) 
+  BDARUMA_run_code_of_0_block_108_233_1_extended_input:     cmd: timeout 20 minizinc /problems/evm-super-compilation/evmopt-generic.mzn /problems/evm-super-compilation/BDARUMA_run_code_of_0_block_108_233_1_extended_input.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+15.6s(O) 
+  BDARUMA_run_code_of_0_block_284_170_0_input:     cmd: timeout 20 minizinc /problems/evm-super-compilation/evmopt-generic.mzn /problems/evm-super-compilation/BDARUMA_run_code_of_0_block_284_170_0_input.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.5s(O) 
+  Kongu_run_code_of_0_block_240_0_input:     cmd: timeout 20 minizinc /problems/evm-super-compilation/evmopt-generic.mzn /problems/evm-super-compilation/Kongu_run_code_of_0_block_240_0_input.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  PlaylinkAirdrop_run_code_of_0_block_216_0_input:     cmd: timeout 20 minizinc /problems/evm-super-compilation/evmopt-generic.mzn /problems/evm-super-compilation/PlaylinkAirdrop_run_code_of_0_block_216_0_input.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  isolated_block_6_0_input:     cmd: timeout 20 minizinc /problems/evm-super-compilation/evmopt-generic.mzn /problems/evm-super-compilation/isolated_block_6_0_input.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.2s(O) 
+  gamete_nl20_m30_12983649:     cmd: timeout 20 minizinc /problems/gametes/gametes.mzn /problems/gametes/gamete_nl20_m30_12983649.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  gamete_nl20_m30_778477:     cmd: timeout 20 minizinc /problems/gametes/gametes.mzn /problems/gametes/gamete_nl20_m30_778477.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+12.7s(O) 
+  gamete_nl20_m40_10408565:     cmd: timeout 20 minizinc /problems/gametes/gametes.mzn /problems/gametes/gamete_nl20_m40_10408565.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+14.3s(O) 
+  gamete_nl7_m10_134:     cmd: timeout 20 minizinc /problems/gametes/gametes.mzn /problems/gametes/gamete_nl7_m10_134.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.9s(O) 
+  gamete_nl7_m10_181:     cmd: timeout 20 minizinc /problems/gametes/gametes.mzn /problems/gametes/gamete_nl7_m10_181.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.7s(O) 
+  3_20_0.15_3:     cmd: timeout 20 minizinc /problems/kidney-exchange/ccmcp.mzn /problems/kidney-exchange/3_20_0.15_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  3_20_0.30_4:     cmd: timeout 20 minizinc /problems/kidney-exchange/ccmcp.mzn /problems/kidney-exchange/3_20_0.30_4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  3_20_0.40_2:     cmd: timeout 20 minizinc /problems/kidney-exchange/ccmcp.mzn /problems/kidney-exchange/3_20_0.40_2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.7s(O) 
+  3_25_0.10_2:     cmd: timeout 20 minizinc /problems/kidney-exchange/ccmcp.mzn /problems/kidney-exchange/3_25_0.10_2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  3_25_0.15_4:     cmd: timeout 20 minizinc /problems/kidney-exchange/ccmcp.mzn /problems/kidney-exchange/3_25_0.15_4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  j30_25_5:     cmd: timeout 20 minizinc /problems/mrcpsp/mrcpsp.mzn /problems/mrcpsp/j30_25_5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  j30_29_3:     cmd: timeout 20 minizinc /problems/mrcpsp/mrcpsp.mzn /problems/mrcpsp/j30_29_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.7s(O) 
+  j30_33_5:     cmd: timeout 20 minizinc /problems/mrcpsp/mrcpsp.mzn /problems/mrcpsp/j30_33_5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  j30_41_8:     cmd: timeout 20 minizinc /problems/mrcpsp/mrcpsp.mzn /problems/mrcpsp/j30_41_8.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  j30_54_2:     cmd: timeout 20 minizinc /problems/mrcpsp/mrcpsp.mzn /problems/mrcpsp/j30_54_2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.7s(O) 
+  rnd_n10_p1500_c15_s1:     cmd: timeout 20 minizinc /problems/multi-agent-graph-coverage/graph-scan-revised.mzn /problems/multi-agent-graph-coverage/rnd_n10_p1500_c15_s1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.7s(O) 
+  rnd_n10_p2000_c15_s1:     cmd: timeout 20 minizinc /problems/multi-agent-graph-coverage/graph-scan-revised.mzn /problems/multi-agent-graph-coverage/rnd_n10_p2000_c15_s1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.6s(O) 
+  rnd_n20_p1000_c10_s1:     cmd: timeout 20 minizinc /problems/multi-agent-graph-coverage/graph-scan-revised.mzn /problems/multi-agent-graph-coverage/rnd_n20_p1000_c10_s1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  rnd_n40_p1000_c20_s1:     cmd: timeout 20 minizinc /problems/multi-agent-graph-coverage/graph-scan-revised.mzn /problems/multi-agent-graph-coverage/rnd_n40_p1000_c20_s1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  rnd_n75_p1000_c50_s1:     cmd: timeout 20 minizinc /problems/multi-agent-graph-coverage/graph-scan-revised.mzn /problems/multi-agent-graph-coverage/rnd_n75_p1000_c50_s1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  n12:     cmd: timeout 20 minizinc /problems/pennies-opt/pennies.mzn /problems/pennies-opt/n12.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  n5:     cmd: timeout 20 minizinc /problems/pennies-opt/pennies.mzn /problems/pennies-opt/n5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  n7:     cmd: timeout 20 minizinc /problems/pennies-opt/pennies.mzn /problems/pennies-opt/n7.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.6s(O) 
+  n8:     cmd: timeout 20 minizinc /problems/pennies-opt/pennies.mzn /problems/pennies-opt/n8.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  n9:     cmd: timeout 20 minizinc /problems/pennies-opt/pennies.mzn /problems/pennies-opt/n9.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  chicroster_dataset_10:     cmd: timeout 20 minizinc /problems/roster/roster_model.mzn /problems/roster/chicroster_dataset_10.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  chicroster_dataset_12:     cmd: timeout 20 minizinc /problems/roster/roster_model.mzn /problems/roster/chicroster_dataset_12.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  chicroster_dataset_8:     cmd: timeout 20 minizinc /problems/roster/roster_model.mzn /problems/roster/chicroster_dataset_8.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  chicroster_dataset_9:     cmd: timeout 20 minizinc /problems/roster/roster_model.mzn /problems/roster/chicroster_dataset_9.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  chicroster_dataset_large_16:     cmd: timeout 20 minizinc /problems/roster/roster_model.mzn /problems/roster/chicroster_dataset_large_16.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  large:     cmd: timeout 20 minizinc /problems/roster-shifts-bool/bool-model.mzn /problems/roster-shifts-bool/large.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  s100_e20_c8:     cmd: timeout 20 minizinc /problems/roster-shifts-bool/bool-model.mzn /problems/roster-shifts-bool/s100_e20_c8.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  s200_e50_c8:     cmd: timeout 20 minizinc /problems/roster-shifts-bool/bool-model.mzn /problems/roster-shifts-bool/s200_e50_c8.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.5s(O) 
+  s50_e50_c3:     cmd: timeout 20 minizinc /problems/roster-shifts-bool/bool-model.mzn /problems/roster-shifts-bool/s50_e50_c3.json --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.5s(O) 
+  small:     cmd: timeout 20 minizinc /problems/roster-shifts-bool/bool-model.mzn /problems/roster-shifts-bool/small.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.6s(O) 
+  easy_1:     cmd: timeout 20 minizinc /problems/speck-optimisation/SPECK-Optimisation.mzn /problems/speck-optimisation/easy_1.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  easy_3:     cmd: timeout 20 minizinc /problems/speck-optimisation/SPECK-Optimisation.mzn /problems/speck-optimisation/easy_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  hard_0:     cmd: timeout 20 minizinc /problems/speck-optimisation/SPECK-Optimisation.mzn /problems/speck-optimisation/hard_0.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  medium_6:     cmd: timeout 20 minizinc /problems/speck-optimisation/SPECK-Optimisation.mzn /problems/speck-optimisation/medium_6.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+5.9s(O) 
+  very_hard_5:     cmd: timeout 20 minizinc /problems/speck-optimisation/SPECK-Optimisation.mzn /problems/speck-optimisation/very_hard_5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  sudoku_p20:     cmd: timeout 20 minizinc /problems/sudoku_fixed/sudoku_fixed.mzn /problems/sudoku_fixed/sudoku_p20.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  sudoku_p26:     cmd: timeout 20 minizinc /problems/sudoku_fixed/sudoku_fixed.mzn /problems/sudoku_fixed/sudoku_p26.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+4.2s(O) 
+  sudoku_p28:     cmd: timeout 20 minizinc /problems/sudoku_fixed/sudoku_fixed.mzn /problems/sudoku_fixed/sudoku_p28.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.6s(O) 
+  sudoku_p48:     cmd: timeout 20 minizinc /problems/sudoku_fixed/sudoku_fixed.mzn /problems/sudoku_fixed/sudoku_p48.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.2s(O) 
+  sudoku_p89:     cmd: timeout 20 minizinc /problems/sudoku_fixed/sudoku_fixed.mzn /problems/sudoku_fixed/sudoku_p89.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  p1000_m10_r200_c15:     cmd: timeout 20 minizinc /problems/table-layout/TableLayout.mzn /problems/table-layout/p1000_m10_r200_c15.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  p1000_m20_r200_c20:     cmd: timeout 20 minizinc /problems/table-layout/TableLayout.mzn /problems/table-layout/p1000_m20_r200_c20.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  p1000_m3_r100_c10:     cmd: timeout 20 minizinc /problems/table-layout/TableLayout.mzn /problems/table-layout/p1000_m3_r100_c10.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  p2000_m10_r500_c20:     cmd: timeout 20 minizinc /problems/table-layout/TableLayout.mzn /problems/table-layout/p2000_m10_r500_c20.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  p2000_m16_r1000_c200:     cmd: timeout 20 minizinc /problems/table-layout/TableLayout.mzn /problems/table-layout/p2000_m16_r1000_c200.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  t100m20r3-14:     cmd: timeout 20 minizinc /problems/test-scheduling/test-scheduling.mzn /problems/test-scheduling/t100m20r3-14.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.5s(O) 
+  t20m10r10-17:     cmd: timeout 20 minizinc /problems/test-scheduling/test-scheduling.mzn /problems/test-scheduling/t20m10r10-17.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.3s(O) 
+  t30m20r3-20:     cmd: timeout 20 minizinc /problems/test-scheduling/test-scheduling.mzn /problems/test-scheduling/t30m20r3-20.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  t500m50r10-8:     cmd: timeout 20 minizinc /problems/test-scheduling/test-scheduling.mzn /problems/test-scheduling/t500m50r10-8.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  t50m20r10-17:     cmd: timeout 20 minizinc /problems/test-scheduling/test-scheduling.mzn /problems/test-scheduling/t50m20r10-17.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.4s(O) 
+  n10_k15_c5000_l10000_u11000_r49:     cmd: timeout 20 minizinc /problems/travelling-thief/ttp.mzn /problems/travelling-thief/data/n10_k15_c5000_l10000_u11000_r49.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.1s(O) 
+  n10_k3_c5000_l10000_u10100_r46:     cmd: timeout 20 minizinc /problems/travelling-thief/ttp.mzn /problems/travelling-thief/data/n10_k3_c5000_l10000_u10100_r46.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.6s(O) 
+  n20_k15_c5000_l100_u200_r32:     cmd: timeout 20 minizinc /problems/travelling-thief/ttp.mzn /problems/travelling-thief/data/n20_k15_c5000_l100_u200_r32.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+13.3s(O) 
+  n20_k20_c1000_l1000_u2000_r46:     cmd: timeout 20 minizinc /problems/travelling-thief/ttp.mzn /problems/travelling-thief/data/n20_k20_c1000_l1000_u2000_r46.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+7.8s(O) 
+  n20_k3_c10000_l100_u200_r81:     cmd: timeout 20 minizinc /problems/travelling-thief/ttp.mzn /problems/travelling-thief/data/n20_k3_c10000_l100_u200_r81.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+15.3s(O) 
+  L10-T48G10L10:     cmd: timeout 20 minizinc /problems/unit-commitment/Unit-Commitment.mzn /problems/unit-commitment/L10-T48G10L10.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+1.0s(O) 
+  L12-T48G15L10:     cmd: timeout 20 minizinc /problems/unit-commitment/Unit-Commitment.mzn /problems/unit-commitment/L12-T48G15L10.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+4.7s(O) 
+  L15-T48G30L15:     cmd: timeout 20 minizinc /problems/unit-commitment/Unit-Commitment.mzn /problems/unit-commitment/L15-T48G30L15.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  L3-T6G5L5:     cmd: timeout 20 minizinc /problems/unit-commitment/Unit-Commitment.mzn /problems/unit-commitment/L3-T6G5L5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.2s(O) 
+  L7-T12G5L5:     cmd: timeout 20 minizinc /problems/unit-commitment/Unit-Commitment.mzn /problems/unit-commitment/L7-T12G5L5.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.2s(O) 
+  horizon12:     cmd: timeout 20 minizinc /problems/valve-network/valve-network.mzn /problems/valve-network/horizon12.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.2s(O) 
+  horizon19:     cmd: timeout 20 minizinc /problems/valve-network/valve-network.mzn /problems/valve-network/horizon19.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+12.0s(O) 
+  horizon20:     cmd: timeout 20 minizinc /problems/valve-network/valve-network.mzn /problems/valve-network/horizon20.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+15.9s(O) 
+  horizon28:     cmd: timeout 20 minizinc /problems/valve-network/valve-network.mzn /problems/valve-network/horizon28.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  horizon6:     cmd: timeout 20 minizinc /problems/valve-network/valve-network.mzn /problems/valve-network/horizon6.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+0.6s(O) 
+  vrplc10_5_20_s3:     cmd: timeout 20 minizinc /problems/vrplc/vrplc_service.mzn /problems/vrplc/vrplc10_5_20_s3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  vrplc11_5_15_s4:     cmd: timeout 20 minizinc /problems/vrplc/vrplc_service.mzn /problems/vrplc/vrplc11_5_15_s4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  vrplc13_11_20_s4:     cmd: timeout 20 minizinc /problems/vrplc/vrplc_service.mzn /problems/vrplc/vrplc13_11_20_s4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  vrplc9_5_10_s2:     cmd: timeout 20 minizinc /problems/vrplc/vrplc_service.mzn /problems/vrplc/vrplc9_5_10_s2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+2.6s(O) 
+  vrplc9_5_15_s2:     cmd: timeout 20 minizinc /problems/vrplc/vrplc_service.mzn /problems/vrplc/vrplc9_5_15_s2.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  p_4_GG_GG_yumi_grid_setup_7_7:     cmd: timeout 20 minizinc /problems/yumi-static/yumi-static.mzn /problems/yumi-static/p_4_GG_GG_yumi_grid_setup_7_7.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+3.6s(O) 
+  p_4_SG_SG_yumi_grid_setup_3_3:     cmd: timeout 20 minizinc /problems/yumi-static/yumi-static.mzn /problems/yumi-static/p_4_SG_SG_yumi_grid_setup_3_3.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+5.0s(O) 
+  p_5_GG_GGG_yumi_grid_setup_7_7:     cmd: timeout 20 minizinc /problems/yumi-static/yumi-static.mzn /problems/yumi-static/p_5_GG_GGG_yumi_grid_setup_7_7.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+4.6s(O) 
+  p_7_GGG_GGGG_yumi_grid_setup_3_4:     cmd: timeout 20 minizinc /problems/yumi-static/yumi-static.mzn /problems/yumi-static/p_7_GGG_GGGG_yumi_grid_setup_3_4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+  p_9_GGGG_GGGGG_yumi_grid_setup_3_4:     cmd: timeout 20 minizinc /problems/yumi-static/yumi-static.mzn /problems/yumi-static/p_9_GGGG_GGGGG_yumi_grid_setup_3_4.dzn --static-schedule /benchmark/solvers/cpsat8.csv --solver parasol -p 8 --ai none --output-solver --solver-config-mode cache --verbosity error --static-runtime 100000000 --mzn-flag --output-time
+20.0s(U) 
+
+Results written to: /results/parasol-2023
