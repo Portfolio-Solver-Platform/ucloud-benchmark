@@ -297,19 +297,77 @@ def log_failure(task: dict, j: dict, ucloud_state: str, in_flight: Optional[tupl
         f.write(json.dumps(entry) + "\n")
 
 
+def write_killed_placeholder(task: dict, in_flight: tuple) -> None:
+    """The wrapper container died before writing a row for the in-flight problem.
+    Write a WRAPPER_KILLED placeholder for it directly from the orchestrator so
+    the next wrapper invocation skips past it.
+    """
+    csv_path = task_results_dir(task) / "results.csv"
+    if not csv_path.exists():
+        return  # nothing to append to
+    # Read all rows; replace any existing row for this key (defensive); append placeholder.
+    rows = parse_csv_rows(csv_path)
+    by_key: dict[tuple, dict] = {(r["problem"], r["name"], r["model"]): r for r in rows}
+    if in_flight in by_key:
+        return  # already present, nothing to do
+    placeholder = {
+        "schedule": task["portfolio"],
+        "problem": in_flight[0],
+        "name": in_flight[1],
+        "model": in_flight[2],
+        "time_ms": "0",
+        "objective": "",
+        "optimal": "WRAPPER_KILLED",
+        "last_result_from": "",
+    }
+    by_key[in_flight] = placeholder
+    # Atomic rewrite
+    tmp = csv_path.with_suffix(".csv.tmp")
+    with open(tmp, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["schedule", "problem", "name", "model",
+                                          "time_ms", "objective", "optimal",
+                                          "last_result_from"])
+        w.writeheader()
+        for k_, r in by_key.items():
+            w.writerow({k: r.get(k, "") for k in ["schedule", "problem", "name", "model",
+                                                  "time_ms", "objective", "optimal",
+                                                  "last_result_from"]})
+    tmp.replace(csv_path)
+    print(f"    wrote WRAPPER_KILLED placeholder for {in_flight[0]}/{in_flight[1]}")
+
+
 def post_finish_classify(task: dict, j: dict, ucloud_state: str) -> None:
     """After a job ends, re-check CSV. Presence = done.
     If still partial, the wrapper died mid-loop; resubmit up to RETRY_LIMIT.
+    If the container appeared to "succeed" but the CSV is still missing rows,
+    the wrapper container itself was killed (typically by OOM on a hungry
+    problem). In that case, write a WRAPPER_KILLED placeholder for the in-flight
+    problem so the next wrapper invocation skips past it.
     """
     cls, info = classify_task(task)
     if cls == "complete":
         j["state"] = "success"
         return
 
-    # Job didn't finish. Log the failure (which machine + which problem was in flight).
+    # Job didn't finish. Log the failure.
     in_flight = info.get("in_flight") if cls == "partial" else None
     if ucloud_state in NONFINAL_UCLOUD_FAILURES or cls != "complete":
         log_failure(task, j, ucloud_state, in_flight)
+
+    # If UCloud says SUCCESS but CSV is partial → the wrapper container itself
+    # was killed mid-problem. Write a placeholder so we don't loop on the same
+    # killer problem forever.
+    if cls == "partial" and ucloud_state == "SUCCESS" and in_flight:
+        try:
+            write_killed_placeholder(task, in_flight)
+            # Re-classify after placeholder write (might now be complete or
+            # advance the in_flight pointer).
+            cls, info = classify_task(task)
+            if cls == "complete":
+                j["state"] = "success"
+                return
+        except Exception as e:
+            print(f"    placeholder write failed: {e}")
 
     if j.get("retry_count", 0) >= RETRY_LIMIT:
         j["state"] = "failed"
