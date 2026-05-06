@@ -32,9 +32,10 @@ from discover import discover_problems
 
 CSV_HEADERS = ["schedule", "problem", "name", "model", "time_ms",
                "objective", "optimal", "last_result_from"]
-SUCCESS_STATUSES = {"Optimal", "Unsat"}
-# Anything NOT in this set is treated as "needs retry":
-#   Unknown (timed out), OOM, TIMEOUT, ERROR, blank, etc.
+# Simple model: presence in CSV = problem has been attempted, leave it alone.
+# Absence = needs running. The wrapper writes ONE row per attempt (success row
+# from benchmark_parasol.py for clean runs; an error row constructed here for
+# OOM/TIMEOUT/crash). Once a row exists, it is canonical for that problem.
 
 
 def parse_args() -> argparse.Namespace:
@@ -183,13 +184,12 @@ def main() -> None:
         model_stem = model_path.stem
         key = (problem_dir, name, model_stem)
 
-        existing = rows.get(key)
-        if existing and existing.get("optimal", "") in SUCCESS_STATUSES:
+        if key in rows:
+            # Row already exists for this problem (any status). Skip.
             n_skip += 1
             continue
 
-        prev_status = existing.get("optimal", "<missing>") if existing else "<missing>"
-        print(f"  attempting {problem_dir}/{name} (prev: {prev_status})", flush=True)
+        print(f"  attempting {problem_dir}/{name}", flush=True)
 
         new_row = run_one_problem(
             benchmark_script=args.benchmark_script,
@@ -209,7 +209,8 @@ def main() -> None:
         write_csv(out_csv, rows)
 
         n_attempt += 1
-        if new_row.get("optimal") in SUCCESS_STATUSES:
+        status = new_row.get("optimal", "")
+        if status in {"Optimal", "Unsat", "Unknown"}:
             n_success += 1
         else:
             n_fail += 1

@@ -75,7 +75,8 @@ POLL_INTERVAL_SEC = 30
 RETRY_LIMIT = 3  # how many times we resubmit a wrapper if it itself died mid-run
 
 FINAL_STATES = {"SUCCESS", "FAILURE", "CANCELED", "EXPIRED"}
-SUCCESS_STATUSES = {"Optimal", "Unsat"}
+NONFINAL_UCLOUD_FAILURES = {"FAILURE", "CANCELED", "EXPIRED"}
+FAILURE_LOG = HERE / "failures.jsonl"  # one JSON object per machine that didn't finish
 
 
 def need_token() -> str:
@@ -134,23 +135,30 @@ def parse_csv_rows(csv_path: Path) -> list[dict]:
 def classify_task(task: dict) -> tuple[str, dict]:
     """Returns (state, info).
        'pending'  - CSV doesn't exist
-       'partial'  - CSV exists but some expected problem has no row
-       'complete' - every expected problem has a row (any status)
+       'partial'  - CSV exists but at least one expected (problem, name, model)
+                    has no row in it
+       'complete' - every expected (problem, name, model) has a row in CSV
+                    (regardless of status; the row itself is the canonical record)
     """
     csv_path = task_results_dir(task) / "results.csv"
     rows = parse_csv_rows(csv_path)
     if not rows:
         return ('pending', {})
 
-    present = {(r["problem"], r["name"], r["model"]) for r in rows}
     expected = get_problem_keys(task["year"])
     if not expected:
         return ('pending', {})
 
+    present = {(r["problem"], r["name"], r["model"]) for r in rows}
     missing = [k for k in expected if k not in present]
+
     if not missing:
         return ('complete', {'rows': len(rows)})
-    return ('partial', {'missing_count': len(missing), 'rows': len(rows)})
+    return ('partial', {
+        'missing_count': len(missing),
+        'rows': len(rows),
+        'in_flight': missing[0],  # the first missing key — what was running when the wrapper died
+    })
 
 
 # ---------------- state ----------------
@@ -241,60 +249,72 @@ def pick_license(state: dict) -> Optional[str]:
 
 # ---------------- classification helpers ----------------
 def initial_scan(state: dict, queue: list[dict]) -> None:
+    """Always re-evaluate based on disk truth, except for jobs UCloud says are running.
+    This way stale state.json entries (e.g. 'success' from a previous orchestrator's
+    bad logic) get corrected to 'partial' if the CSV still has non-real-result rows.
+    """
     for task in queue:
         k = task_key(task)
         j = state["jobs"][k]
-        if j["state"] in ("running", "success", "failed"):
-            continue
+        if j["state"] == "running":
+            continue  # leave for reconcile
         cls, info = classify_task(task)
+        prev_state = j["state"]
         if cls == "complete":
-            if j["state"] != "success":
-                print(f"  scan {k}: complete ({info.get('rows')} rows)")
             j["state"] = "success"
+            if prev_state != "success":
+                print(f"  scan {k}: complete ({info.get('rows')} rows)")
         elif cls == "partial":
-            print(f"  scan {k}: partial ({info['missing_count']} missing of {len(get_problem_keys(task['year']))})")
+            n_expected = len(get_problem_keys(task['year']))
             j["state"] = "partial"
             j["last_missing_count"] = info["missing_count"]
+            if prev_state in ("success", "failed"):
+                # state.json was wrong about this — log loudly
+                print(f"  scan {k}: was '{prev_state}' but CSV is partial "
+                      f"({info['missing_count']}/{n_expected} need retry) — re-queuing")
+            else:
+                print(f"  scan {k}: partial ({info['missing_count']}/{n_expected} need retry)")
         else:
             j["state"] = "pending"
+            if prev_state in ("success", "failed"):
+                print(f"  scan {k}: was '{prev_state}' but no CSV — re-queuing as pending")
 
 
-def post_finish_classify(task: dict, j: dict) -> None:
-    """After a job ends, re-check the CSV.
-    Per_problem_runner is meant to fill every row, so 'complete' is the happy path.
-    If the wrapper itself died mid-loop, we'd see 'partial'; resubmit up to RETRY_LIMIT.
-    'partial with no progress' (same missing_count as before) means the wrapper
-    is failing fast for some reason — failed.
+def log_failure(task: dict, j: dict, ucloud_state: str, in_flight: Optional[tuple]) -> None:
+    """Append a one-line JSON record of a machine that didn't complete its task."""
+    entry = {
+        "time": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "task": task_key(task),
+        "job_id": j.get("job_id"),
+        "license": j.get("license"),
+        "ucloud_state": ucloud_state,
+        "in_flight_problem": list(in_flight) if in_flight else None,
+        "retry_count": j.get("retry_count", 0),
+    }
+    with open(FAILURE_LOG, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+
+
+def post_finish_classify(task: dict, j: dict, ucloud_state: str) -> None:
+    """After a job ends, re-check CSV. Presence = done.
+    If still partial, the wrapper died mid-loop; resubmit up to RETRY_LIMIT.
     """
     cls, info = classify_task(task)
     if cls == "complete":
         j["state"] = "success"
         return
 
-    if cls == "pending":
-        # CSV gone or never created. Treat as fresh partial; cap retries.
-        if j.get("retry_count", 0) >= RETRY_LIMIT:
-            j["state"] = "failed"
-            j["last_error"] = "wrapper produced no CSV"
-        else:
-            j["state"] = "partial"
-        return
+    # Job didn't finish. Log the failure (which machine + which problem was in flight).
+    in_flight = info.get("in_flight") if cls == "partial" else None
+    if ucloud_state in NONFINAL_UCLOUD_FAILURES or cls != "complete":
+        log_failure(task, j, ucloud_state, in_flight)
 
-    # cls == "partial"
-    new_missing = info["missing_count"]
-    prev_missing = j.get("last_missing_count")
-    progressed = (prev_missing is None) or (new_missing < prev_missing)
-    j["last_missing_count"] = new_missing
-
-    if progressed:
-        j["state"] = "partial"
-        # don't bump retry_count on progress
+    if j.get("retry_count", 0) >= RETRY_LIMIT:
+        j["state"] = "failed"
+        j["last_error"] = f"retry limit reached, ucloud={ucloud_state}, "\
+                           f"missing={info.get('missing_count', '?')}"
     else:
-        if j.get("retry_count", 0) >= RETRY_LIMIT:
-            j["state"] = "failed"
-            j["last_error"] = f"no progress: {new_missing} missing rows after {j.get('retry_count')} retries"
-        else:
-            j["state"] = "partial"
+        j["state"] = "partial" if cls == "partial" else "pending"
 
 
 def reconcile(state: dict, token: str) -> None:
@@ -306,7 +326,7 @@ def reconcile(state: dict, token: str) -> None:
                     print(f"  reconcile {k}: was running, now {s}")
                     task = {"portfolio": j["portfolio"], "year": j["year"], "rep": j["rep"]}
                     j["finished_at"] = j.get("finished_at") or time.time()
-                    post_finish_classify(task, j)
+                    post_finish_classify(task, j, s)
             except Exception as e:
                 print(f"  reconcile error {k}: {e}")
     save_state(state)
@@ -352,7 +372,7 @@ def main() -> None:
                     if s in FINAL_STATES:
                         j["finished_at"] = time.time()
                         task = {"portfolio": j["portfolio"], "year": j["year"], "rep": j["rep"]}
-                        post_finish_classify(task, j)
+                        post_finish_classify(task, j, s)
                         print(f"  finished {k}: ucloud={s} -> {j['state']} (license={j.get('license')})")
                 except Exception as e:
                     print(f"  poll error {k}: {e}")
