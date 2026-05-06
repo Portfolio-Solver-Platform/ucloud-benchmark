@@ -12,4 +12,4 @@ set -eo pipefail
 
 
 cd /work/benchmark/ucloud-benchmark/orchestrator
-python3 -u orchestrator.py --test
+python3 -u orchestrator.py 
