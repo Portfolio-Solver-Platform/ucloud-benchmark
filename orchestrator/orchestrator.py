@@ -6,20 +6,26 @@ Constraints:
 - Per-portfolio in-flight cap: 7
 - Gurobi license pool: 7 licenses x 2 slots = 14 (only ek1/k1 consume; cpsat free)
 
-Each task's wrapper invokes per_problem_runner.py, which:
-  - Reads existing results.csv
-  - Iterates expected problems for the year
-  - Skips ones with status Optimal/Unsat
-  - Runs each non-success problem in a fresh subprocess (so OOM/crash on one
-    problem doesn't kill the rest)
-  - Appends a row (success or error) for each attempted problem
+Model: per_problem_runner.py (called inside the wrapper) writes ONE row per
+expected problem - either a real benchmark result row or an error row if the
+problem's subprocess crashed/OOMed/timed out. Once a row exists, that problem
+is considered done; rows are never overwritten.
+
+So the orchestrator only needs to think in terms of presence:
+  - 'pending'  - no CSV yet
+  - 'partial'  - CSV exists but missing rows for some expected problems
+                 (means the wrapper itself died mid-loop)
+  - 'complete' - every expected problem has a row (any status)
+
+Failed machines (UCloud jobs ending in FAILURE/EXPIRED/CANCELED, or finishing
+with a partial CSV) are appended to failures.jsonl with the problem that was
+in flight when the job died.
 
 Orchestrator job:
-  - Track state of each (portfolio, year, rep) task
-  - Dispatch fresh tasks; resubmit if wrapper itself died mid-run
-  - Cap dispatched in-flight per portfolio at 7
+  - Cap in-flight per portfolio at 7
   - Manage gurobi license pool (14 slots) for ek1/k1
   - Drain partial tasks before fresh ones (two-pass dispatch)
+  - Resubmit partial tasks up to RETRY_LIMIT
   - Crash-safe: state.json written atomically after every change
 
 Auth: requires UCLOUD_TOKEN env var (a personal access token).
@@ -172,8 +178,7 @@ class JobState:
     state: str = "pending"  # pending | partial | running | success | failed
     submitted_at: Optional[float] = None
     finished_at: Optional[float] = None
-    retry_count: int = 0
-    last_missing_count: Optional[int] = None
+    retry_count: int = 0  # number of resubmits after the initial dispatch
     last_error: Optional[str] = None
 
 
@@ -250,8 +255,7 @@ def pick_license(state: dict) -> Optional[str]:
 # ---------------- classification helpers ----------------
 def initial_scan(state: dict, queue: list[dict]) -> None:
     """Always re-evaluate based on disk truth, except for jobs UCloud says are running.
-    This way stale state.json entries (e.g. 'success' from a previous orchestrator's
-    bad logic) get corrected to 'partial' if the CSV still has non-real-result rows.
+    Disk is authoritative: stale state.json entries get corrected to match.
     """
     for task in queue:
         k = task_key(task)
@@ -267,17 +271,12 @@ def initial_scan(state: dict, queue: list[dict]) -> None:
         elif cls == "partial":
             n_expected = len(get_problem_keys(task['year']))
             j["state"] = "partial"
-            j["last_missing_count"] = info["missing_count"]
-            if prev_state in ("success", "failed"):
-                # state.json was wrong about this — log loudly
-                print(f"  scan {k}: was '{prev_state}' but CSV is partial "
-                      f"({info['missing_count']}/{n_expected} need retry) — re-queuing")
-            else:
-                print(f"  scan {k}: partial ({info['missing_count']}/{n_expected} need retry)")
+            tag = "" if prev_state not in ("success", "failed") else f" (was '{prev_state}')"
+            print(f"  scan {k}: partial ({info['missing_count']}/{n_expected} missing){tag}")
         else:
             j["state"] = "pending"
             if prev_state in ("success", "failed"):
-                print(f"  scan {k}: was '{prev_state}' but no CSV — re-queuing as pending")
+                print(f"  scan {k}: was '{prev_state}' but no CSV — re-queuing")
 
 
 def log_failure(task: dict, j: dict, ucloud_state: str, in_flight: Optional[tuple]) -> None:

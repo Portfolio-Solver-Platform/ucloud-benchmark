@@ -3,15 +3,17 @@
 Per-problem runner: invokes benchmark_parasol.py once per problem so that an
 OOM/timeout/crash on one problem doesn't kill the rest of the run.
 
-Reads existing results.csv, computes problems still needing a real result,
-attempts each in a fresh subprocess, writes either a success row (copied from
-the subprocess's output) or an error row (status OOM / TIMEOUT / ERROR).
+Model: presence in CSV = problem has been attempted, leave it alone.
+Absence = needs running. For each absent problem, run it in a fresh subprocess;
+write the resulting row (a success row from benchmark_parasol on a clean run,
+or an error row constructed here for OOM/TIMEOUT/crash). One row per (problem,
+name, model) triple - the row is canonical for that problem and is never
+overwritten by a subsequent invocation.
 
-Idempotent: rows with status Optimal/Unsat are kept and skipped on subsequent
-invocations. Rows with status OOM/TIMEOUT/ERROR/Unknown (or Unknown-with-no
-solver) are RE-ATTEMPTED on each invocation. The wrapper itself is meant to be
-run-to-completion; the outer orchestrator caps how many times the wrapper as a
-whole can be re-submitted.
+This is meant to be run-to-completion. If the wrapper itself is killed
+mid-loop, some expected problems will have no row yet; the orchestrator
+detects this and resubmits, and on resume this script picks up the missing
+problems.
 
 CSV layout (matches benchmark_parasol.py):
   schedule, problem, name, model, time_ms, objective, optimal, last_result_from
@@ -117,14 +119,11 @@ def run_one_problem(
     hard_wall = timeout + 60
     start = time.time()
     rc: int | str = 0
-    stderr_capture = ""
     try:
         result = subprocess.run(cmd, timeout=hard_wall, capture_output=True, text=True)
         rc = result.returncode
-        stderr_capture = (result.stderr or "")[-500:]
-    except subprocess.TimeoutExpired as e:
+    except subprocess.TimeoutExpired:
         rc = "PY_TIMEOUT"
-        stderr_capture = (e.stderr or b"").decode("utf-8", errors="replace")[-500:] if e.stderr else ""
     elapsed_ms = int((time.time() - start) * 1000)
 
     if rc == 0:
