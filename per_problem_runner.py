@@ -84,6 +84,22 @@ def write_csv(csv_path: Path, rows: dict[tuple, dict]) -> None:
     tmp.replace(csv_path)
 
 
+def _preserve_artifacts(tmpdir: Path, dest_dir: Path) -> None:
+    """Copy .out and .stderr files from tmpdir to dest_dir (the task's main output
+    dir) so per-problem solver logs are kept for debugging. results.csv is left
+    behind in tmpdir since we merge that row into our own CSV."""
+    if not tmpdir.exists():
+        return
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for f in tmpdir.iterdir():
+        if f.name == "results.csv" or not f.is_file():
+            continue
+        try:
+            shutil.copy2(f, dest_dir / f.name)
+        except OSError:
+            pass
+
+
 def run_one_problem(
     *,
     benchmark_script: Path,
@@ -98,6 +114,7 @@ def run_one_problem(
     problem_dir: str,
     name: str,
     model_stem: str,
+    output_dir: Path,
 ) -> dict:
     """Invoke benchmark_parasol.py for one problem; return a result row dict."""
     rel_model = model_path.relative_to(problems_path)
@@ -126,23 +143,22 @@ def run_one_problem(
         rc = "PY_TIMEOUT"
     elapsed_ms = int((time.time() - start) * 1000)
 
+    # Always preserve .out/.stderr artifacts (whether run succeeded or not).
+    _preserve_artifacts(tmpdir, output_dir)
+
     if rc == 0:
-        # Try to read the row from the subprocess's CSV
         sub_csv = tmpdir / "results.csv"
         if sub_csv.exists():
             with open(sub_csv, newline="") as f:
                 rows = list(csv.DictReader(f))
             shutil.rmtree(tmpdir, ignore_errors=True)
             if rows:
-                # Take the last row (in case of multi-row output for some reason)
                 return rows[-1]
 
-    # Couldn't get a clean result: classify the failure.
     shutil.rmtree(tmpdir, ignore_errors=True)
     if rc == "PY_TIMEOUT":
         status = "TIMEOUT"
     elif isinstance(rc, int) and rc < 0:
-        # Killed by signal. -9 = SIGKILL (likely OOM); others mark generic ERROR
         status = "OOM" if rc == -9 else "ERROR"
     else:
         status = "ERROR"
@@ -221,6 +237,7 @@ def main() -> None:
             problem_dir=problem_dir,
             name=name,
             model_stem=model_stem,
+            output_dir=args.output_dir,
         )
         rows[key] = new_row
         write_csv(out_csv, rows)
