@@ -14,10 +14,18 @@ Auth: requires UCLOUD_TOKEN env var (a personal access token).
 from __future__ import annotations
 import json
 import os
+import ssl
 import sys
 import time
 import urllib.error
 import urllib.request
+
+# SSL context: prefer system CAs; fall back to certifi if installed.
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    _SSL_CTX = ssl.create_default_context()
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Optional
@@ -110,7 +118,7 @@ def api_request(method: str, path: str, token: str, body: Optional[dict] = None)
     if data is not None:
         req.add_header("Content-Type", "application/json")
     try:
-        with urllib.request.urlopen(req, timeout=30) as r:
+        with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
             text = r.read().decode()
     except urllib.error.HTTPError as e:
         text = e.read().decode()

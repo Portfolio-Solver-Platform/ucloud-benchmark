@@ -12,10 +12,17 @@ at /1096288/Jobs/benchmark/ucloud-benchmark/test.sh).
 from __future__ import annotations
 import json
 import os
+import ssl
 import sys
 import time
 import urllib.error
 import urllib.request
+
+try:
+    import certifi
+    _SSL_CTX = ssl.create_default_context(cafile=certifi.where())
+except ImportError:
+    _SSL_CTX = ssl.create_default_context()
 from pathlib import Path
 
 HERE = Path(__file__).parent
