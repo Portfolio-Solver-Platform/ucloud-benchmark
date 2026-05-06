@@ -1,0 +1,105 @@
+{
+  "product": {
+    "id": "cpu-amd-zen5-8-vcpu",
+    "category": "cpu-amd-zen5",
+    "provider": "ucloud"
+  },
+  "application": {
+    "name": "terminal-ubuntu",
+    "version": "Apr2026"
+  },
+  "name": "ek1-2023-r1",
+  "replicas": 1,
+  "allowDuplicateJob": false,
+  "parameters": {
+    "batchScript": {
+      "type": "file",
+      "path": "/1096288/Jobs/benchmark/ucloud-benchmark/test.sh",
+      "mountPath": "",
+      "readOnly": false,
+      "value": null,
+      "hostname": "",
+      "jobId": "",
+      "id": "",
+      "specification": {
+        "applicationName": "",
+        "language": "",
+        "init": null,
+        "job": null,
+        "readme": null,
+        "inputs": null
+      },
+      "modules": null,
+      "port": 0
+    },
+    "ucMetricSampleRate": {
+      "type": "text",
+      "path": "",
+      "mountPath": "",
+      "readOnly": false,
+      "value": "0ms",
+      "hostname": "",
+      "jobId": "",
+      "id": "",
+      "specification": {
+        "applicationName": "",
+        "language": "",
+        "init": null,
+        "job": null,
+        "readme": null,
+        "inputs": null
+      },
+      "modules": null,
+      "port": 0
+    }
+  },
+  "resources": [
+    {
+      "type": "file",
+      "path": "/1096288/Jobs/benchmark",
+      "mountPath": "",
+      "readOnly": false,
+      "value": null,
+      "hostname": "",
+      "jobId": "",
+      "id": "",
+      "specification": {
+        "applicationName": "",
+        "language": "",
+        "init": null,
+        "job": null,
+        "readme": null,
+        "inputs": null
+      },
+      "modules": null,
+      "port": 0
+    },
+    {
+      "type": "file",
+      "path": "/1096288/Jobs/minizinc",
+      "mountPath": "",
+      "readOnly": false,
+      "value": null,
+      "hostname": "",
+      "jobId": "",
+      "id": "",
+      "specification": {
+        "applicationName": "",
+        "language": "",
+        "init": null,
+        "job": null,
+        "readme": null,
+        "inputs": null
+      },
+      "modules": null,
+      "port": 0
+    }
+  ],
+  "timeAllocation": {
+    "hours": 3,
+    "minutes": 0,
+    "seconds": 0
+  },
+  "sshEnabled": true,
+  "labels": {}
+}

@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eo pipefail
-cd "$(dirname "$0")"
+
+source /work/minizinc/scripts/setup-env.sh
+cd benchmark/ucloud-benchmark/run-final-portfolios-more-reps/
 
 PORTFOLIO="ek1-8c-8s-v2"
 CORES=8
