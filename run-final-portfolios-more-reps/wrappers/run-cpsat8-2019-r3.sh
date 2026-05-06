@@ -10,12 +10,13 @@ rep=3
 
 {
     echo "=== ${PORTFOLIO} ${year} r${rep} (license=default,cpsat-no-gurobi) ==="
-    python ../benchmark_parasol.py -s "../solvers/cpsat8.csv" \
-        -r 1 -t 1200 \
-        -o "../../results/final-many-reps/${PORTFOLIO}/${PORTFOLIO}-${year}-r${rep}" \
+    python3 -u ../per_problem_runner.py \
+        --portfolio "${PORTFOLIO}" --year ${year} --rep ${rep} \
+        --schedule "../solvers/cpsat8.csv" \
         --problems-path "../../data/mzn-challenge/${year}" \
-        --discover \
+        --output-dir "../../results/final-many-reps/${PORTFOLIO}/${PORTFOLIO}-${year}-r${rep}" \
+        --timeout 1200 --cores ${CORES} \
         -- --solver parasol -p ${CORES} --ai none --output-solver \
         --solver-config-mode cache --verbosity error \
         --static-runtime 100000000
-} 2>&1 | tee ${PORTFOLIO}-${year}-r${rep}-out.txt
+} 2>&1 | tee -a ${PORTFOLIO}-${year}-r${rep}-out.txt
