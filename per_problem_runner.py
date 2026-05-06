@@ -190,6 +190,24 @@ def main() -> None:
 
         print(f"  attempting {problem_dir}/{name}", flush=True)
 
+        # Pre-write a placeholder row before launching the subprocess. If the
+        # subprocess (or the entire container) gets killed, this row remains so
+        # the next wrapper invocation skips past this problem instead of getting
+        # killed on it again. If the run completes normally, this placeholder is
+        # overwritten with the actual result below.
+        placeholder = {
+            "schedule": schedule_stem,
+            "problem": problem_dir,
+            "name": name,
+            "model": model_stem,
+            "time_ms": "0",
+            "objective": "",
+            "optimal": "WRAPPER_KILLED",
+            "last_result_from": "",
+        }
+        rows[key] = placeholder
+        write_csv(out_csv, rows)
+
         new_row = run_one_problem(
             benchmark_script=args.benchmark_script,
             schedule=args.schedule,

@@ -78,7 +78,10 @@ SLOTS_PER_LICENSE = 2
 
 PER_PORTFOLIO_CAP = 7
 POLL_INTERVAL_SEC = 30
-RETRY_LIMIT = 3  # how many times we resubmit a wrapper if it itself died mid-run
+RETRY_LIMIT = 15  # max wrapper resubmits per task. With the placeholder fix in
+                  # per_problem_runner, each container-killing problem only burns
+                  # ONE retry (next wrapper sees the placeholder and skips past).
+                  # 15 is enough to absorb that many killing problems per task.
 
 FINAL_STATES = {"SUCCESS", "FAILURE", "CANCELED", "EXPIRED"}
 NONFINAL_UCLOUD_FAILURES = {"FAILURE", "CANCELED", "EXPIRED"}
