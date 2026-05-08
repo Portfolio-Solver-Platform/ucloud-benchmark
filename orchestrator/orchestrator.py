@@ -70,7 +70,7 @@ RESULTS_LOCAL_DIR_TEST = LOCAL_BENCHMARK_ROOT / "results" / "test-orchestrator"
 RESULTS_LOCAL_DIR = RESULTS_LOCAL_DIR_PROD
 
 PORTFOLIOS = ["cpsat8", "k1-8c-8s-v1", "ek1-8c-8s-v2"]
-YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019]
+YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015]
 REPS = [1, 2, 3]
 
 LICENSES = ["alessio", "astrid", "malthe", "mikkel", "felix", "jonas", "default"]
