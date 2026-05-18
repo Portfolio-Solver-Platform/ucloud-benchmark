@@ -3,6 +3,19 @@ set -eo pipefail
 source /work/minizinc/scripts/setup-env.sh --gurobi-license /work/minizinc/solvers/gurobi/gurobi.lic
 cd /work/benchmark/ucloud-benchmark/run-svc-2025/
 
+echo "--- installing Python deps ---"
+python3 -m pip install --quiet -r requirements.txt
+
+echo "--- AI smoke-test: ./svc-ek1/svc_ek1_2011_2024.py on a zero vector ---"
+ZERO="$(printf '0%.0s' {1..95} | sed 's/0/0,/g; s/,$//')"
+SMOKE_OUT="$(./svc-ek1/svc_ek1_2011_2024.py "$ZERO" -p 8 2>&1)" || {
+    echo "AI script failed -- output below"
+    echo "$SMOKE_OUT"
+    exit 1
+}
+echo "smoke-test output:"
+echo "$SMOKE_OUT"
+
 PORTFOLIO="svc-ek1"
 CORES=8
 year=2025
