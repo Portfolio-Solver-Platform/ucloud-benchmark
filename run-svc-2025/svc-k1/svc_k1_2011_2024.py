@@ -8,9 +8,13 @@ ai-tools/ai_experiments/pre2025/build_pre2025_model.py).
 
 import argparse
 import os
+import time
 
 import joblib
 import numpy as np
+
+CHOICE_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "ai_choices.csv")
 
 from svc_common import BagSVCPredictor, SignedLog1p  # noqa: F401 - needed at unpickle time
 
@@ -55,6 +59,15 @@ def main():
     parser.add_argument("-p", required=True, type=int, dest="cores")
     args = parser.parse_args()
     sched = schedule(args.features, args.cores)
+
+    portfolio = "cpsat" if len(sched) == 1 else "k1"
+    sched_str = ";".join(f"{s}:{c}" for s, c in sched)
+    new = not os.path.exists(CHOICE_LOG)
+    with open(CHOICE_LOG, "a") as f:
+        if new:
+            f.write("timestamp,predicted,schedule\n")
+        f.write(f"{time.time():.3f},{portfolio},{sched_str}\n")
+
     for solver, cores in sched:
         print(f"{solver},{cores}")
 
