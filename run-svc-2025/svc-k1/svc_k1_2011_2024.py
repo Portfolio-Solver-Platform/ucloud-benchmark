@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.13
+#!/usr/bin/env python3
 """Parasol scheduler (cpsat8 vs k1-8c-8s-v1), pre-2025 model.
 
 Identical to svc_k1.py except the model file is data/svc_k1_2011_2024.joblib,

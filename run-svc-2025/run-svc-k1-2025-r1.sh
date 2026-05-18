@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-source /work/minizinc/scripts/setup-env.sh --gurobi-license /work/minizinc/solvers/gurobi/gurobi-default.lic
+source /work/minizinc/scripts/setup-env.sh --gurobi-license /work/minizinc/solvers/gurobi/gurobi.lic
 cd /work/benchmark/ucloud-benchmark/run-svc-2025/
 
 PORTFOLIO="svc-k1"
