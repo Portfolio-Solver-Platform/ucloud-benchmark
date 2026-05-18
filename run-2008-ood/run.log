@@ -1,0 +1,151 @@
+Year=2008  cap=300s  reps=1
+Problems filter: shortest_path,slow_convergence
+Instances root:  /home/sofus/speciale/ai/data/mzn-challenge/2008
+Results:         /home/sofus/speciale/ai/ucloud/run-2008-ood/results
+
+Discovered 20 instances; total runs = 60
+
+==== rep=1 portfolio=cpsat8 ====
+  [run]  cpsat8        shortest_path/00 rep=1 ... 430ms obj=88 status=Optimal
+  [run]  cpsat8        shortest_path/01 rep=1 ... 478ms obj=42 status=Optimal
+  [run]  cpsat8        shortest_path/02 rep=1 ... 498ms obj=59 status=Optimal
+  [run]  cpsat8        shortest_path/03 rep=1 ... 614ms obj=226 status=Optimal
+  [run]  cpsat8        shortest_path/04 rep=1 ... 578ms obj=111 status=Optimal
+  [run]  cpsat8        shortest_path/05 rep=1 ... 427ms obj=224 status=Optimal
+  [run]  cpsat8        shortest_path/06 rep=1 ... 531ms obj=57 status=Optimal
+  [run]  cpsat8        shortest_path/07 rep=1 ... 521ms obj=411 status=Optimal
+  [run]  cpsat8        shortest_path/08 rep=1 ... 473ms obj=144 status=Optimal
+  [run]  cpsat8        shortest_path/09 rep=1 ... 507ms obj=549 status=Optimal
+  [run]  cpsat8        slow_convergence/0100 rep=1 ... 484ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0200 rep=1 ... 418ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0300 rep=1 ... 2086ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0400 rep=1 ... 3807ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0500 rep=1 ... 6688ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0600 rep=1 ... 10757ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0700 rep=1 ... 17437ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0800 rep=1 ... 27108ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/0900 rep=1 ... 36103ms obj=<none> status=Unknown
+  [run]  cpsat8        slow_convergence/1000 rep=1 ... 47001ms obj=<none> status=Unknown
+
+==== rep=1 portfolio=k1-8c-8s-v1 ====
+  [run]  k1-8c-8s-v1   shortest_path/00 rep=1 ... 443ms obj=88 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/01 rep=1 ... 426ms obj=42 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/02 rep=1 ... 465ms obj=59 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/03 rep=1 ... 615ms obj=226 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/04 rep=1 ... 559ms obj=111 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/05 rep=1 ... 461ms obj=224 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/06 rep=1 ... 516ms obj=57 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/07 rep=1 ... 502ms obj=411 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/08 rep=1 ... 547ms obj=144 status=Optimal
+  [run]  k1-8c-8s-v1   shortest_path/09 rep=1 ... 1184ms obj=549 status=Optimal
+  [run]  k1-8c-8s-v1   slow_convergence/0100 rep=1 ... 539ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0200 rep=1 ... 484ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0300 rep=1 ... 1907ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0400 rep=1 ... 3874ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0500 rep=1 ... 6794ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0600 rep=1 ... 11084ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0700 rep=1 ... 17119ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0800 rep=1 ... 24254ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/0900 rep=1 ... 33833ms obj=<none> status=Unknown
+  [run]  k1-8c-8s-v1   slow_convergence/1000 rep=1 ... 45269ms obj=<none> status=Unknown
+
+==== rep=1 portfolio=ek1-8c-8s-v2 ====
+  [run]  ek1-8c-8s-v2  shortest_path/00 rep=1 ... 526ms obj=88 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/01 rep=1 ... 493ms obj=42 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/02 rep=1 ... 503ms obj=59 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/03 rep=1 ... 548ms obj=226 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/04 rep=1 ... 614ms obj=111 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/05 rep=1 ... 503ms obj=224 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/06 rep=1 ... 480ms obj=57 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/07 rep=1 ... 526ms obj=411 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/08 rep=1 ... 571ms obj=144 status=Optimal
+  [run]  ek1-8c-8s-v2  shortest_path/09 rep=1 ... 1431ms obj=549 status=Optimal
+  [run]  ek1-8c-8s-v2  slow_convergence/0100 rep=1 ... 541ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0200 rep=1 ... 456ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0300 rep=1 ... 2293ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0400 rep=1 ... 4414ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0500 rep=1 ... 7234ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0600 rep=1 ... 11610ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0700 rep=1 ... 17691ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0800 rep=1 ... 26001ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/0900 rep=1 ... 36846ms obj=<none> status=Unknown
+  [run]  ek1-8c-8s-v2  slow_convergence/1000 rep=1 ... 45071ms obj=<none> status=Unknown
+
+Year=2008  cap=300s  reps=1  image=parasol:latest
+Instance set: from mznc2008_features.pkl (instances we have features for)
+
+Discovered 20 instances; total runs = 60
+
+==== rep=1 portfolio=cpsat8 ====
+  [skip] cpsat8        shortest_path/00 rep=1
+  [skip] cpsat8        shortest_path/01 rep=1
+  [skip] cpsat8        shortest_path/02 rep=1
+  [skip] cpsat8        shortest_path/03 rep=1
+  [skip] cpsat8        shortest_path/04 rep=1
+  [skip] cpsat8        shortest_path/05 rep=1
+  [skip] cpsat8        shortest_path/06 rep=1
+  [skip] cpsat8        shortest_path/07 rep=1
+  [skip] cpsat8        shortest_path/08 rep=1
+  [skip] cpsat8        shortest_path/09 rep=1
+  [run]  cpsat8        slow_convergence/0100 rep=1 ... 614ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0200 rep=1 ... 420ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0300 rep=1 ... 2466ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0400 rep=1 ... 3695ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0500 rep=1 ... 5932ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0600 rep=1 ... 10405ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0700 rep=1 ... 15873ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0800 rep=1 ... 23782ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/0900 rep=1 ... 35720ms obj=<none> status=Satisfied
+  [run]  cpsat8        slow_convergence/1000 rep=1 ... 48427ms obj=<none> status=Satisfied
+
+==== rep=1 portfolio=k1-8c-8s-v1 ====
+  [skip] k1-8c-8s-v1   shortest_path/00 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/01 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/02 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/03 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/04 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/05 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/06 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/07 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/08 rep=1
+  [skip] k1-8c-8s-v1   shortest_path/09 rep=1
+  [run]  k1-8c-8s-v1   slow_convergence/0100 rep=1 ... 494ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0200 rep=1 ... 454ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0300 rep=1 ... 2062ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0400 rep=1 ... 3845ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0500 rep=1 ... 6789ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0600 rep=1 ... 11264ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0700 rep=1 ... 17420ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0800 rep=1 ... 24800ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/0900 rep=1 ... 33883ms obj=<none> status=Satisfied
+  [run]  k1-8c-8s-v1   slow_convergence/1000 rep=1 ... 45564ms obj=<none> status=Satisfied
+
+==== rep=1 portfolio=ek1-8c-8s-v2 ====
+  [skip] ek1-8c-8s-v2  shortest_path/00 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/01 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/02 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/03 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/04 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/05 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/06 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/07 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/08 rep=1
+  [skip] ek1-8c-8s-v2  shortest_path/09 rep=1
+  [run]  ek1-8c-8s-v2  slow_convergence/0100 rep=1 ... 513ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0200 rep=1 ... 451ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0300 rep=1 ... 2405ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0400 rep=1 ... 4469ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0500 rep=1 ... 7780ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0600 rep=1 ... 11976ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0700 rep=1 ... 17922ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0800 rep=1 ... 27037ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/0900 rep=1 ... 36693ms obj=<none> status=Satisfied
+  [run]  ek1-8c-8s-v2  slow_convergence/1000 rep=1 ... 48855ms obj=<none> status=Satisfied
+
+Done. Per-portfolio CSVs in /home/sofus/speciale/ai/ucloud/run-2008-ood/results/:
+total 20
+drwxrwxr-x 2 sofus sofus 4096 May 18 13:29 .
+drwxrwxr-x 3 sofus sofus 4096 May 18 13:27 ..
+-rw-rw-r-- 1 sofus sofus 1361 May 18 13:31 cpsat8.csv
+-rw-rw-r-- 1 sofus sofus 1482 May 18 13:36 ek1-8c-8s-v2.csv
+-rw-rw-r-- 1 sofus sofus 1462 May 18 13:34 k1-8c-8s-v1.csv
