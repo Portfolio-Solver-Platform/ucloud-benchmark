@@ -22,5 +22,5 @@ export HELD_OUT_YEAR=2020
         -- --solver parasol -p ${CORES} \
         --ai command-line --ai-config command="./svc-k1/svc_k1.py" \
         --output-solver --solver-config-mode cache --verbosity error \
-        --static-runtime 0
+        --static-runtime 0 --restart-interval 10000000000
 } 2>&1 | tee -a ${PORTFOLIO}-${year}-r${rep}-out.txt
